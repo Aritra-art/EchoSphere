@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { Header } from "../components/Header";
 
 export const Signup = () => {
   const [signupValue, setSignupValue] = useState({
@@ -10,6 +11,7 @@ export const Signup = () => {
     password: "",
     confirmpassword: "",
     err: "",
+    checked: false,
   });
   const { signupUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -30,6 +32,11 @@ export const Signup = () => {
         ...signupValue,
         err: "password should match confirm password",
       }));
+    } else if (!signupValue.checked) {
+      setSignupValue((signupValue) => ({
+        ...signupValue,
+        err: "please accept all Terms & Conditions",
+      }));
     } else {
       setSignupValue((signupValue) => ({
         ...signupValue,
@@ -39,69 +46,90 @@ export const Signup = () => {
     }
   };
   return (
-    <>
-      <section className="login-layout-conteiner">
+    <div>
+      <Header />
+      <section>
         <div className="login-layout">
-          <h1 className="center-text">Signup</h1>
+          <h1 className="center-text login-header">Signup</h1>
           <form className="login-form-container" onSubmit={signupFormHandler}>
-            <label>
+            <label className="flex-col">
               Full Name{" "}
               <input
                 placeholder="Aritra Chowdhury"
                 required
+                className="login-input"
                 name="fullname"
                 value={signupValue.fullname}
                 onChange={handleSignupInputChange}
               />
             </label>
-            <label>
+            <label className="flex-col">
               Username{" "}
               <input
                 placeholder="aritrachowdhury"
                 required
+                className="login-input"
                 name="username"
                 value={signupValue.username}
                 onChange={handleSignupInputChange}
               />
             </label>
-            <label>
+            <label className="flex-col">
               Email Address{" "}
               <input
                 placeholder="aritrachowdhury@gmail.com"
                 required
+                className="login-input"
                 name="email"
                 value={signupValue.email}
                 onChange={handleSignupInputChange}
               />
             </label>
-            <label>
+            <label className="flex-col">
               Password{" "}
               <input
                 placeholder="******"
                 required
+                className="login-input"
                 name="password"
                 value={signupValue.password}
                 onChange={handleSignupInputChange}
               />
             </label>
-            <label>
+            <label className="flex-col">
               Confirm Password{" "}
               <input
                 placeholder="******"
                 required
+                className="login-input"
                 name="confirmpassword"
                 value={signupValue.confirmpassword}
                 onChange={handleSignupInputChange}
               />
             </label>
+            <label className="login-terms-condition">
+              <input
+                type="checkbox"
+                checked={signupValue.checked}
+                onChange={() =>
+                  setSignupValue((signupValue) => ({
+                    ...signupValue,
+                    checked: !signupValue.checked,
+                  }))
+                }
+              />{" "}
+              I accept all Terms & Conditions
+            </label>
             <span className="login-error-msg">{signupValue.err}</span>
-            <button type="submit">Create New Account</button>
-            <span onClick={() => navigate("/login")}>
+            <button type="submit" className="login-primary-btn">
+              Create New Account
+            </button>
+            <span onClick={() => navigate("/login")} className="login-link">
               Already have an account
             </span>
           </form>
         </div>
       </section>
-    </>
+    </div>
   );
 };

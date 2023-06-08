@@ -48,11 +48,6 @@ export const Login = () => {
           ...loginValue,
           err: "password should be 6 characters long",
         }));
-      } else if (!loginValue.checked) {
-        setLoginValue((loginValue) => ({
-          ...loginValue,
-          err: "please accept all Terms & Conditions",
-        }));
       } else {
         setLoginValue((loginValue) => ({
           ...loginValue,
@@ -78,7 +73,7 @@ export const Login = () => {
               <input
                 className="login-input"
                 type="text"
-                placeholder="aritrachowdhury@gmail.com"
+                placeholder="aritrachowdhury"
                 name="username"
                 value={loginValue.username}
                 onChange={handleLoginInputChange}
@@ -106,7 +101,7 @@ export const Login = () => {
                   }))
                 }
               />{" "}
-              I accept all Terms & Conditions
+              Remember Me
             </label>
             <span className="login-error-msg">{loginValue.err}</span>
 
