@@ -2,17 +2,95 @@
   border: 1px solid;
   width: 23rem;
   padding: 2rem;
-  margin: 30px auto;
+  margin: 20px auto;
+  border: 1px solid;
+  border-radius: 0.6rem;
+  background-color: white;
 }
 .login-form-container {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 1.1rem;
+  margin: 0.6rem 0;
+  letter-spacing: 2px;
 }
 
 .login-error-msg {
   color: red;
   font-style: italic;
   font-size: small;
+  margin: 0.2rem 0;
+}
+
+.login-primary-btn,
+.login-secondary-btn {
+  width: 18rem;
+  margin: 0.5rem 0;
+  height: 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.login-primary-btn {
+  background-color: #ff3b30;
+  color: white;
+  border: 1px solid white;
+  transition: 0.2s ease-in;
+}
+.login-secondary-btn {
+  background-color: white;
+  color: #ff3b30;
+  border: 1px solid #ff3b30;
+}
+.login-primary-btn:hover,
+.login-secondary-btn:hover {
+  cursor: pointer;
+}
+.login-primary-btn:hover {
+  background-color: white;
+  color: #ff3b30;
+  border: 1px solid #ff3b30;
+}
+
+.login-input {
+  width: 18rem;
+  height: 2.5rem;
+  padding: 0.2rem 0.4rem;
+  margin-top: 0.5rem;
+  border: 1px solid gray;
+  border-radius: 0.4rem;
+  outline: none;
+  font-size: 1rem;
+}
+.login-header {
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 1rem;
+}
+.login-link {
+  margin-top: 1rem;
+  transition: 0.2s ease-in;
+  font-size: 1rem;
+}
+.login-link:hover {
+  cursor: pointer;
+  translate: 0 -3px;
+  text-decoration: underline;
+}
+.login-link::after {
+  content: " >";
+}
+.login-terms-condition {
+  width: 18rem;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  margin: 0.5rem 0;
 }
