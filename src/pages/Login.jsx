@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import "./Login.css";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [loginValue, setLoginValue] = useState({
@@ -8,6 +9,7 @@ export const Login = () => {
     password: "",
     err: "",
   });
+  const navigate = useNavigate();
 
   const { loginUser } = useContext(AuthContext);
 
@@ -61,6 +63,7 @@ export const Login = () => {
     <>
       <section className="login-layout-container">
         <div className="login-layout">
+          <h1 className="center-text">Login</h1>
           <form className="login-form-container">
             <label>
               Username{" "}
@@ -86,7 +89,7 @@ export const Login = () => {
 
             <button onClick={loginFormHandler}>Login</button>
             <button onClick={loginFormHandler}>Login as Guest</button>
-            <p>Create New Account</p>
+            <span onClick={() => navigate("/signup")}>Create New Account</span>
           </form>
         </div>
       </section>
