@@ -3,7 +3,7 @@ export const Header = () => {
     <h1
       className="center-text"
       style={{
-        fontSize: "2.9rem",
+        fontSize: "3.5rem",
         paddingTop: "2rem",
       }}
     >

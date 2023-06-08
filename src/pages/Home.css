@@ -1,0 +1,45 @@
+.home-container-layout {
+  width: 24rem;
+  margin: 20px auto;
+}
+.margin {
+  margin: 3rem 0;
+}
+.home-container-header {
+  font-size: 2.3rem;
+  letter-spacing: 3px;
+  font-weight: bolder;
+  color: #9a9a9a;
+  text-transform: uppercase;
+}
+.home-container-small-header {
+  font-size: 0.8rem;
+  color: black;
+  font-weight: bold;
+}
+.home-container-btn {
+  width: 24rem;
+  height: 3.5rem;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.home-container-login-link {
+  margin-top: 0.8rem;
+  transition: 0.2s ease-in;
+  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.home-container-login-link:hover {
+  cursor: pointer;
+  translate: 0 -3px;
+  text-decoration: underline;
+}
+.home-image-banner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  width: 24rem;
+}
