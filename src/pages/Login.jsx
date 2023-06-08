@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import "./Login.css";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../components/Header";
 
 export const Login = () => {
   const [loginValue, setLoginValue] = useState({
@@ -66,8 +67,9 @@ export const Login = () => {
   };
 
   return (
-    <>
-      <section className="login-layout-container">
+    <div className="login-layout-container">
+      <Header />
+      <section>
         <div className="login-layout">
           <h1 className="center-text login-header">Login</h1>
           <form className="login-form-container">
@@ -120,6 +122,6 @@ export const Login = () => {
           </form>
         </div>
       </section>
-    </>
+    </div>
   );
 };
