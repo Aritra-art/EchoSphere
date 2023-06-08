@@ -26,7 +26,10 @@ export const Login = () => {
         ...loginValue,
         err: "",
       }));
-      loginUser({ username: "adarshbalika", password: "adarshBalika123" });
+      loginUser({
+        username: "aritrachowdhury",
+        password: "aritrachowdhury123",
+      });
     } else {
       if (
         loginValue.username.length === 0 ||
