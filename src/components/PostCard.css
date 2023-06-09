@@ -1,0 +1,17 @@
+.postcard-layout {
+  width: 24rem;
+  background-color: pink;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+.user-avatar-img {
+  border-radius: 50%;
+}
+.postcard-header-layout {
+  display: flex;
+  flex-wrap: wrap;
+}
+.postcard-header-name {
+  align-self: center;
+  margin-left: 0.8rem;
+}
