@@ -43,3 +43,49 @@
   margin-top: 2rem;
   width: 24rem;
 }
+
+@media screen and (min-width: 768px) {
+  .home-container-layout {
+    width: 40rem;
+  }
+  .home-container-header {
+    font-size: 2.6rem;
+    letter-spacing: 3.5px;
+  }
+  .home-container-small-header {
+    font-size: 1rem;
+  }
+  .home-image-banner {
+    width: 40rem;
+  }
+  .home-container-btn {
+    width: 40rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .home-container-layout {
+    margin-top: 2rem;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .home-container-content {
+    width: 40%;
+  }
+  .home-container-header {
+    font-size: 2.6rem;
+    letter-spacing: 3.5px;
+  }
+  .home-container-small-header {
+    font-size: 1rem;
+  }
+  .home-image-banner {
+    width: 80%;
+    margin: 0;
+  }
+  .home-container-btn {
+    width: 32rem;
+    height: 3.3rem;
+  }
+}
