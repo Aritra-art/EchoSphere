@@ -6,6 +6,7 @@ import { Home } from "./pages/Home";
 import { Explore } from "./pages/Explore";
 import { Layout } from "./pages/Layout";
 import { Feed } from "./pages/Feed";
+import { RequireAuth } from "./services/RequireAuth";
 
 function App() {
   return (
@@ -23,9 +24,11 @@ function App() {
         <Route
           path="/feed"
           element={
-            <Layout>
-              <Feed />
-            </Layout>
+            <RequireAuth>
+              <Layout>
+                <Feed />
+              </Layout>
+            </RequireAuth>
           }
         />
         <Route path="/login" element={<Login />} />

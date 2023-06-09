@@ -1,11 +1,13 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import { userLoginService } from "../services/userLoginService";
 import { userSignupService } from "../services/userSignupService";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
   const { username } = user ?? { username: "" };
@@ -15,6 +17,7 @@ export const AuthContextProvider = ({ children }) => {
       if (response?.status === 200) {
         localStorage.setItem("token", response?.data?.encodedToken);
         localStorage.setItem("user", JSON.stringify(response?.data?.foundUser));
+        navigate("/feed");
         alert("Login successfull");
       }
     } catch (error) {
@@ -31,6 +34,7 @@ export const AuthContextProvider = ({ children }) => {
           "user",
           JSON.stringify(response?.data?.createdUser)
         );
+        navigate("/feed");
         alert("signup successfull");
       }
     } catch (error) {
