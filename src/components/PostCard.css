@@ -1,17 +1,57 @@
 .postcard-layout {
   width: 24rem;
-  background-color: pink;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
+  background-color: #f7f7f7;
+  margin: 1rem auto;
+  padding: 1rem 0.5rem;
+  border-radius: 0.6rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .user-avatar-img {
   border-radius: 50%;
+  border: 2px solid #ff3b30;
 }
 .postcard-header-layout {
   display: flex;
   flex-wrap: wrap;
 }
 .postcard-header-name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-self: center;
   margin-left: 0.8rem;
+}
+.fa-ellipsis {
+  margin-left: 20px;
+}
+
+.postcard-content {
+  margin: 1rem 0;
+  line-height: 1.6rem;
+}
+
+.postcard-content-img {
+  width: 23rem;
+  margin: 0px auto;
+  margin-bottom: 0.4rem;
+}
+hr {
+  color: black;
+}
+
+.card-action-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  color: #ff3b30;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.margin-left {
+  margin-left: 7px;
+}
+.post-fullname {
+  font-weight: bold;
 }

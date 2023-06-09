@@ -4,7 +4,11 @@ export const Layout = ({ children }) => {
   return (
     <>
       <Navbar />
-      {children}
+      <div className="layout-section">
+        <div>leftpane</div>
+        <div>{children}</div>
+        <div>rightpane</div>
+      </div>
     </>
   );
 };
