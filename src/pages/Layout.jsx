@@ -5,9 +5,9 @@ export const Layout = ({ children }) => {
     <>
       <Navbar />
       <div className="layout-section">
-        <div>leftpane</div>
+        <div></div>
         <div>{children}</div>
-        <div>rightpane</div>
+        <div></div>
       </div>
     </>
   );

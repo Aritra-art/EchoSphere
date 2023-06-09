@@ -32,7 +32,7 @@ export const posts = [
       dislikedBy: [],
     },
     fullname: "Subham Soni",
-    username: "shubhamsoni",
+    username: "subhamsoni",
     postImage: "https://source.unsplash.com/random/900x700/?gym",
     createdAt: "2023-06-02",
     updatedAt: formatDate(),

@@ -2,7 +2,7 @@
   width: 24rem;
   background-color: #f7f7f7;
   margin: 1rem auto;
-  padding: 1rem 0.5rem;
+  padding: 1rem 0.8rem;
   border-radius: 0.6rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -13,16 +13,11 @@
 .postcard-header-layout {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .postcard-header-name {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-self: center;
-  margin-left: 0.8rem;
-}
-.fa-ellipsis {
-  margin-left: 20px;
 }
 
 .postcard-content {
@@ -31,8 +26,10 @@
 }
 
 .postcard-content-img {
-  width: 23rem;
-  margin: 0px auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
   margin-bottom: 0.4rem;
 }
 hr {
@@ -46,6 +43,11 @@ hr {
   margin-top: 0.5rem;
   color: #ff3b30;
   font-size: 1.3rem;
+}
+.fa-heart,
+.fa-comment,
+.fa-bookmark,
+.fa-share {
   cursor: pointer;
 }
 

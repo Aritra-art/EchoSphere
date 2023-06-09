@@ -5,6 +5,7 @@ import { Signup } from "./pages/Signup";
 import { Home } from "./pages/Home";
 import { Explore } from "./pages/Explore";
 import { Layout } from "./pages/Layout";
+import { Feed } from "./pages/Feed";
 
 function App() {
   return (
@@ -16,6 +17,14 @@ function App() {
           element={
             <Layout>
               <Explore />
+            </Layout>
+          }
+        />
+        <Route
+          path="/feed"
+          element={
+            <Layout>
+              <Feed />
             </Layout>
           }
         />

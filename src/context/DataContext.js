@@ -20,7 +20,6 @@ export const DataContextProvider = ({ children }) => {
   useEffect(() => {
     getAllPosts();
   }, []);
-  console.log(postState?.posts);
   const value = { postState };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
