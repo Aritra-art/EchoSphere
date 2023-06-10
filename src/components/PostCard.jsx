@@ -7,9 +7,11 @@ import "./PostCard.css";
 import { getUser } from "../backend/utils/getUser";
 import { isPostLiked } from "../backend/utils/isPostLiked";
 import { postDislikeHandler } from "../services/postDislikeHandler";
+import { addToBookmarkHandler } from "../services/addToBookmarkHandler";
+import { removeFromBookmarkHandler } from "../services/removeFromBookmarkHandler";
 
 export const Postcard = ({ data }) => {
-  const { dispatchPost } = useContext(DataContext);
+  const { postState, dispatchPost } = useContext(DataContext);
   const token = getToken();
   const user = getUser();
   return (
@@ -72,7 +74,24 @@ export const Postcard = ({ data }) => {
                     <span className="margin-left">{likes?.likeCount}</span>
                   </i>
                   <i className="fa-regular fa-comment"></i>
-                  <i className="fa-regular fa-bookmark"></i>
+                  <i
+                    className={`${
+                      postState.bookmarks.includes(_id)
+                        ? "fa-solid"
+                        : "fa-regular"
+                    } fa-bookmark`}
+                    onClick={() => {
+                      if (token?.length === 0) {
+                        alert("please login to continue");
+                      } else {
+                        if (postState.bookmarks.includes(_id)) {
+                          removeFromBookmarkHandler(token, _id, dispatchPost);
+                        } else {
+                          addToBookmarkHandler(token, _id, dispatchPost);
+                        }
+                      }
+                    }}
+                  ></i>
                   <i className="fas fa-share"></i>
                 </div>
               </div>
