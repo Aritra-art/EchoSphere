@@ -37,4 +37,34 @@ export const posts = [
     createdAt: "2023-06-02",
     updatedAt: formatDate(),
   },
+  {
+    _id: "04abace9-d253-431b-8b74-ca5f3d664bfb",
+    content:
+      "ChatGPT, an advanced language model,A virtual assistant, clever and intellectual,With its vast knowledge, it helps and interacts,Understanding queries, providing accurate facts.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    fullname: "Rinku Singh",
+    username: "rinkusingh",
+    postImage: "https://source.unsplash.com/random/900x700/?chatGPT",
+    createdAt: "2023-06-03",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "7aef0ff6-79c4-444a-8404-3add2916c058",
+    content:
+      "ReactJS, a popular JavaScript library,Used for building user interfaces that are extraordinary.Component-based architecture, reusable and neat,Efficiently updates the view with a virtual DOM treat.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    fullname: "Rinku Singh",
+    username: "rinkusingh",
+    postImage: "https://source.unsplash.com/random/900x700/?reactjs",
+    createdAt: "2023-06-04",
+    updatedAt: formatDate(),
+  },
 ];
