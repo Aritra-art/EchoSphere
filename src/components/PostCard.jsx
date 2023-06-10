@@ -1,7 +1,17 @@
+import { useContext } from "react";
 import { getPostDate } from "../backend/utils/getPostDate";
+import { getToken } from "../backend/utils/getToken";
+import { DataContext } from "../context/DataContext";
+import { postLikeHandler } from "../services/postLikeHandler";
 import "./PostCard.css";
+import { getUser } from "../backend/utils/getUser";
+import { isPostLiked } from "../backend/utils/isPostLiked";
+import { postDislikeHandler } from "../services/postDislikeHandler";
 
 export const Postcard = ({ data }) => {
+  const { dispatchPost } = useContext(DataContext);
+  const token = getToken();
+  const user = getUser();
   return (
     <>
       {data?.length > 0 &&
@@ -38,7 +48,22 @@ export const Postcard = ({ data }) => {
                 </div>
                 <hr />
                 <div className="card-action-buttons">
-                  <i className="fa-regular fa-heart">
+                  <i
+                    className={`${
+                      isPostLiked(likes, user) ? "fa solid" : "fa-regular"
+                    } fa-heart`}
+                    onClick={() => {
+                      if (token?.length === 0) {
+                        alert("please login to continue");
+                      } else {
+                        if (!isPostLiked(likes, user)) {
+                          postLikeHandler(token, _id, dispatchPost);
+                        } else {
+                          postDislikeHandler(token, _id, dispatchPost);
+                        }
+                      }
+                    }}
+                  >
                     <span className="margin-left">{likes?.likeCount}</span>
                   </i>
                   <i className="fa-regular fa-comment"></i>

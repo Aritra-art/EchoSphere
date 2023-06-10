@@ -34,6 +34,7 @@ export const AuthContextProvider = ({ children }) => {
           "user",
           JSON.stringify(response?.data?.createdUser)
         );
+        setIsLoggedIn(true);
         navigate("/feed");
         alert("signup successfull");
       }
