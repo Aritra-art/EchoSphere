@@ -11,7 +11,6 @@ export const DataContextProvider = ({ children }) => {
   const getAllPosts = async () => {
     const response = await getAllPostsService();
     if (response?.status === 200) {
-      console.log(response?.data?.posts, "from context");
       dispatchPost({
         type: "SET_ALL_POSTS",
         payload: response?.data?.posts,
@@ -21,7 +20,6 @@ export const DataContextProvider = ({ children }) => {
   useEffect(() => {
     getAllPosts();
   }, []);
-  console.log(postState?.posts);
   const value = { postState, dispatchPost };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

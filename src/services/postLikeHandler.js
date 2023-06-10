@@ -11,7 +11,6 @@ export const postLikeHandler = async (encodedToken, postId, dispatchPost) => {
         },
       }
     );
-    console.log(response);
     if (response?.status === 201) {
       dispatchPost({
         type: "SET_ALL_POSTS",
