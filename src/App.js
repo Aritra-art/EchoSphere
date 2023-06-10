@@ -7,6 +7,7 @@ import { Explore } from "./pages/Explore";
 import { Layout } from "./pages/Layout";
 import { Feed } from "./pages/Feed";
 import { RequireAuth } from "./services/RequireAuth";
+import { Bookmark } from "./pages/Bookmark";
 
 function App() {
   return (
@@ -27,6 +28,16 @@ function App() {
             <RequireAuth>
               <Layout>
                 <Feed />
+              </Layout>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/bookmark"
+          element={
+            <RequireAuth>
+              <Layout>
+                <Bookmark />
               </Layout>
             </RequireAuth>
           }

@@ -15,7 +15,6 @@ export const postDislikeHandler = async (
         },
       }
     );
-    console.log(response);
     if (response?.status === 201) {
       dispatchPost({
         type: "SET_ALL_POSTS",

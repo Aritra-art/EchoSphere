@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { userLoginService } from "../services/userLoginService";
 import { userSignupService } from "../services/userSignupService";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,7 @@ export const AuthContextProvider = ({ children }) => {
       if (response?.status === 200) {
         localStorage.setItem("token", response?.data?.encodedToken);
         localStorage.setItem("user", JSON.stringify(response?.data?.foundUser));
+        setIsLoggedIn(true);
         navigate("/feed");
         alert("Login successfull");
       }
@@ -49,6 +50,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, []);
 
-  const value = { loginUser, signupUser, isLoggedIn };
+  const value = { loginUser, signupUser, isLoggedIn, setIsLoggedIn };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

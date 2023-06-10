@@ -32,6 +32,7 @@ export const Postcard = ({ data }) => {
                     <img
                       className="user-avatar-img"
                       src="https://picsum.photos/id/67/60/60"
+                      alt="avatar"
                     />
                     <span style={{ alignSelf: "center" }}>
                       <span className="post-fullname">{fullname}</span> .{" "}
@@ -44,7 +45,11 @@ export const Postcard = ({ data }) => {
                 </div>
                 <div className="postcard-content">{content}</div>
                 <div>
-                  <img src={postImage} className="postcard-content-img" />
+                  <img
+                    src={postImage}
+                    className="postcard-content-img"
+                    alt="postImage"
+                  />
                 </div>
                 <hr />
                 <div className="card-action-buttons">
