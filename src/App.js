@@ -8,6 +8,7 @@ import { Layout } from "./pages/Layout";
 import { Feed } from "./pages/Feed";
 import { RequireAuth } from "./services/RequireAuth";
 import { Bookmark } from "./pages/Bookmark";
+import { SinglePost } from "./pages/SinglePost";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route path="/post/:postId" element={<SinglePost />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>

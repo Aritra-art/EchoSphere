@@ -9,6 +9,7 @@ import { isPostLiked } from "../backend/utils/isPostLiked";
 import { postDislikeHandler } from "../services/postDislikeHandler";
 import { addToBookmarkHandler } from "../services/addToBookmarkHandler";
 import { removeFromBookmarkHandler } from "../services/removeFromBookmarkHandler";
+import { Link } from "react-router-dom";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
@@ -45,14 +46,17 @@ export const Postcard = ({ data }) => {
 
                   <i className="fa-solid fa-ellipsis"></i>
                 </div>
-                <div className="postcard-content">{content}</div>
-                <div>
-                  <img
-                    src={postImage}
-                    className="postcard-content-img"
-                    alt="postImage"
-                  />
-                </div>
+                <Link to={`/post/${_id}`} className="textdecoration-none">
+                  <div className="postcard-content">{content}</div>
+                  <div>
+                    <img
+                      src={postImage}
+                      className="postcard-content-img"
+                      alt="postImage"
+                    />
+                  </div>
+                </Link>
+
                 <hr />
                 <div className="card-action-buttons">
                   <i
