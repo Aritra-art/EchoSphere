@@ -3,6 +3,7 @@ import { postReducer } from "../reducers/postReducer";
 import { getAllPostsService } from "../services/getAllPostsService";
 import { getAllBookmarksService } from "../services/getAllBookmarksService";
 import { AuthContext } from "./AuthContext";
+import { getAllUsersService } from "../services/getAllUsersService";
 
 export const DataContext = createContext();
 
@@ -10,6 +11,7 @@ export const DataContextProvider = ({ children }) => {
   const [postState, dispatchPost] = useReducer(postReducer, {
     posts: [],
     bookmarks: [],
+    users: [],
   });
   const { isLoggedIn } = useContext(AuthContext);
   const getAllPosts = async () => {
@@ -19,6 +21,19 @@ export const DataContextProvider = ({ children }) => {
         type: "SET_ALL_POSTS",
         payload: response?.data?.posts,
       });
+    }
+  };
+  const getAllUsers = async () => {
+    try {
+      const response = await getAllUsersService();
+      if (response?.status === 200) {
+        dispatchPost({
+          type: "SET_ALL_USERS",
+          payload: response?.data?.users,
+        });
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
   const getAllBookmarks = async () => {
@@ -37,6 +52,7 @@ export const DataContextProvider = ({ children }) => {
 
   useEffect(() => {
     getAllPosts();
+    getAllUsers();
   }, []);
   useEffect(() => {
     isLoggedIn && getAllBookmarks();

@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
+
   const token = getToken();
   const user = getUser();
   return (
@@ -34,7 +35,11 @@ export const Postcard = ({ data }) => {
                   <div style={{ display: "flex", gap: "0.5rem" }}>
                     <img
                       className="user-avatar-img"
-                      src="https://picsum.photos/id/67/60/60"
+                      src={
+                        postState?.users?.find(
+                          (user) => user.username === username
+                        )?.profileAvatar
+                      }
                       alt="avatar"
                     />
                     <span style={{ alignSelf: "center" }}>
