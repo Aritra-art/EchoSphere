@@ -2,6 +2,7 @@ import { useContext } from "react";
 import "./SuggestedUsers.css";
 import { DataContext } from "../context/DataContext";
 import { getUser } from "../backend/utils/getUser";
+import { SearchPeople } from "./SearchPeople";
 
 export const SuggestedUsers = () => {
   const { postState } = useContext(DataContext);
@@ -9,9 +10,11 @@ export const SuggestedUsers = () => {
   const suggestedUsers = postState?.users?.filter(
     (user) => user?.username !== loggedInUser?.username
   );
-  console.log(suggestedUsers);
   return (
     <>
+      <div className="search-people-layout">
+        <SearchPeople />
+      </div>
       <div className="suggested-users-layout">
         <h2>Suggested Users</h2>
         <ul className="suggested-users">
@@ -34,8 +37,7 @@ export const SuggestedUsers = () => {
                       />
                       <div className="flex-col">
                         <span>
-                          {firstName}
-                          {lastName}
+                          {firstName} {lastName}
                         </span>
                         <small>@{username}</small>
                       </div>

@@ -29,7 +29,6 @@ export const Navbar = () => {
           Logout
         </button>
       )}
-      {/* <input placeholder="Search People" /> */}
     </div>
   );
 };

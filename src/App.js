@@ -13,7 +13,6 @@ import { getToken } from "./backend/utils/getToken";
 
 function App() {
   const token = getToken();
-  console.log(token);
   return (
     <div className="App">
       <Routes>
