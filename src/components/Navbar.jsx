@@ -14,18 +14,6 @@ export const Navbar = () => {
       <p className="navbar-logo-header" onClick={() => navigate("/explore")}>
         <span className="orange-color">Echo</span>Sphere
       </p>
-      {token && (
-        <button
-          onClick={() => {
-            localStorage.removeItem("user");
-            localStorage.removeItem("token");
-            setIsLoggedIn(false);
-            navigate("/login");
-          }}
-        >
-          Logout
-        </button>
-      )}
     </div>
   );
 };

@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleUserService } from "../services/getSingleUserService";
 import "./SingleProfile.css";
 import { getUser } from "../backend/utils/getUser";
+import { DataContext } from "../context/DataContext";
 
 export const SingleProfile = () => {
   const { username } = useParams();
+
   const user = getUser();
   const [singleUser, setSingleUser] = useState({});
+  const { postState } = useContext(DataContext);
   const getSingleUser = async () => {
     try {
       const response = await getSingleUserService(username);
@@ -20,7 +23,7 @@ export const SingleProfile = () => {
   };
   useEffect(() => {
     getSingleUser();
-  }, [username, singleUser]);
+  }, [username, postState?.users]);
   return (
     <>
       {Object.keys(singleUser)?.length > 0 && (
@@ -34,7 +37,7 @@ export const SingleProfile = () => {
             {singleUser?.firstName} {singleUser?.lastName}
           </h2>
           <h3 className="center-text gray-color">@{singleUser?.username}</h3>
-          {user.username === singleUser?.username ? (
+          {user && user.username === singleUser?.username ? (
             <div className="single-user-edit-button">Edit Profile</div>
           ) : (
             <div className="single-user-edit-button">Follow</div>

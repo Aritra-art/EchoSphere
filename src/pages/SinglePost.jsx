@@ -27,7 +27,7 @@ export const SinglePost = () => {
   };
   useEffect(() => {
     getSinglePost();
-  }, [postId, singlePost]);
+  }, [postId, postState?.posts]);
   const token = getToken();
   const user = getUser();
 
