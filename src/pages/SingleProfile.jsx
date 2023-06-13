@@ -72,6 +72,26 @@ export const SingleProfile = () => {
               {singleUser?.website}
             </a>
           </p>
+          <div className="single-user-follow-layout">
+            <p className="flex-col">
+              <span className="single-user-follow-layout-pill">
+                {singleUser?.following?.length}
+              </span>
+              <span>Following</span>
+            </p>
+            <p className="flex-col">
+              <span className="single-user-follow-layout-pill">
+                {userPosts?.length}
+              </span>
+              <span>Posts</span>
+            </p>
+            <p className="flex-col">
+              <span className="single-user-follow-layout-pill">
+                {singleUser?.followers?.length}
+              </span>
+              <span>Followers</span>
+            </p>
+          </div>
           {userPosts.length > 0 && <Postcard data={userPosts} />}
         </div>
       )}

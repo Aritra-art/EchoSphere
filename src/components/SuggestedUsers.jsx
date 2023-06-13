@@ -4,10 +4,22 @@ import { DataContext } from "../context/DataContext";
 import { getUser } from "../backend/utils/getUser";
 import { SearchPeople } from "./SearchPeople";
 import { Link, useNavigate } from "react-router-dom";
+import { followUserService } from "../services/followUserService";
+import { getToken } from "../backend/utils/getToken";
 
 export const SuggestedUsers = () => {
   const { postState } = useContext(DataContext);
+  console.log(postState?.users);
+  const token = getToken();
   const loggedInUser = getUser();
+  const followUser = async (userId, token) => {
+    try {
+      const response = await followUserService(userId, token);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const suggestedUsers = postState?.users?.filter(
     (user) => user?.username !== loggedInUser?.username
   );
@@ -55,13 +67,14 @@ export const SuggestedUsers = () => {
                       className="suggested-user-follow-btn"
                       onClick={() => {
                         if (loggedInUser) {
+                          followUser(_id, token);
                         } else {
                           alert("please login to follow");
                           navigate("/login");
                         }
                       }}
                     >
-                      Follow{" "}
+                      Follow
                     </div>
                   </li>
                 );

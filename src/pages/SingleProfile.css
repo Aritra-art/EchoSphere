@@ -30,3 +30,17 @@
   margin: 1rem 0rem;
   line-height: 1.5rem;
 }
+.single-user-follow-layout {
+  border: 1px solid;
+  display: flex;
+  margin: 1rem 2rem;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  justify-content: space-between;
+}
+.single-user-follow-layout-pill {
+  align-self: center;
+  font-weight: bold;
+  color: #ff3b30;
+  font-size: 1.4rem;
+}
