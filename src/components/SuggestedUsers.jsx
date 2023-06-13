@@ -7,26 +7,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { followUserService } from "../services/followUserService";
 import { getToken } from "../backend/utils/getToken";
 import { isUserFollowed } from "../backend/utils/isUserFollowed";
+import { followUser } from "../backend/utils/followUser";
 
 export const SuggestedUsers = () => {
   const { postState, dispatchPost } = useContext(DataContext);
   console.log(postState?.users);
   const token = getToken();
   const loggedInUser = getUser();
-  const followUser = async (userId, token) => {
-    try {
-      const response = await followUserService(userId, token);
-      console.log(response);
-      if (response?.status === 200) {
-        dispatchPost({
-          type: "UPDATE_USER_FOLLOW",
-          payload: [response?.data?.followUser, response?.data?.user],
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   const suggestedUsers = postState?.users?.filter(
     (user) => user?.username !== loggedInUser?.username
   );
@@ -74,7 +62,11 @@ export const SuggestedUsers = () => {
                       className="suggested-user-follow-btn"
                       onClick={() => {
                         if (loggedInUser) {
-                          followUser(_id, token);
+                          if (isUserFollowed(postState?.users, _id)) {
+                            alert("unfollow");
+                          } else {
+                            followUser(_id, token, dispatchPost);
+                          }
                         } else {
                           alert("please login to follow");
                           navigate("/login");
