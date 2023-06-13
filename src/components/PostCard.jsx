@@ -32,22 +32,27 @@ export const Postcard = ({ data }) => {
             return (
               <div key={_id} className="postcard-layout">
                 <div className="postcard-header-layout">
-                  <div style={{ display: "flex", gap: "0.5rem" }}>
-                    <img
-                      className="user-avatar-img"
-                      src={
-                        postState?.users?.find(
-                          (user) => user.username === username
-                        )?.profileAvatar
-                      }
-                      alt="avatar"
-                    />
-                    <span style={{ alignSelf: "center" }}>
-                      <span className="post-fullname">{fullname}</span> .{" "}
-                      {getPostDate(createdAt)}
-                      <p>@{username}</p>
-                    </span>
-                  </div>
+                  <Link
+                    to={`/profile/${username}`}
+                    className="textdecoration-none"
+                  >
+                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                      <img
+                        className="user-avatar-img"
+                        src={
+                          postState?.users?.find(
+                            (user) => user.username === username
+                          )?.profileAvatar
+                        }
+                        alt="avatar"
+                      />
+                      <span style={{ alignSelf: "center" }}>
+                        <span className="post-fullname">{fullname}</span> .{" "}
+                        {getPostDate(createdAt)}
+                        <p>@{username}</p>
+                      </span>
+                    </div>
+                  </Link>
 
                   <i className="fa-solid fa-ellipsis"></i>
                 </div>

@@ -10,18 +10,22 @@ export const RouteLayout = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
   const token = getToken();
   const user = getUser();
+  const activeNavpill = ({ isActive }) => ({
+    color: isActive && "#ff3b30",
+    fontWeight: isActive && "bold",
+  });
   return (
     <div className="outer-route-layout-container">
       <div className="route-layout-container ">
-        <NavLink className="nav-pill" to="/feed">
+        <NavLink className="nav-pill" to="/feed" style={activeNavpill}>
           <i className="fa-solid fa-house"></i>
           <span style={{ marginLeft: "10px" }}>Feed</span>
         </NavLink>
-        <NavLink className="nav-pill" to="/explore">
+        <NavLink style={activeNavpill} className="nav-pill" to="/explore">
           <i className="fa-solid fa-compass"></i>
           <span style={{ marginLeft: "10px" }}>Explore</span>
         </NavLink>
-        <NavLink className="nav-pill" to="/bookmark">
+        <NavLink style={activeNavpill} className="nav-pill" to="/bookmark">
           <i className="fa-solid fa-bookmark"></i>
           <span style={{ marginLeft: "10px" }}>Bookmark</span>
         </NavLink>
@@ -32,11 +36,16 @@ export const RouteLayout = () => {
               localStorage.removeItem("user");
               localStorage.removeItem("token");
               setIsLoggedIn(false);
-              navigate("/login");
             }}
           >
-            <i className="fa-solid fa-right-from-bracket"></i>{" "}
+            <i className="fa-solid fa-right-from-bracket"></i>
             <span style={{ marginLeft: "10px" }}>Logout</span>
+          </NavLink>
+        )}
+        {!token && (
+          <NavLink to="/login" className="nav-pill">
+            <i className="fa-solid fa-right-to-bracket"></i>
+            <span style={{ marginLeft: "10px" }}>Login</span>
           </NavLink>
         )}
       </div>

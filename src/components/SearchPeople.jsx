@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import "./SearchPeople.css";
 import { DataContext } from "../context/DataContext";
+import { Link } from "react-router-dom";
 
 export const SearchPeople = () => {
   const [userInput, setUserInput] = useState("");
@@ -29,26 +30,32 @@ export const SearchPeople = () => {
                 ({ _id, firstName, lastName, username, profileAvatar }) => {
                   return (
                     <li key={_id} className="suggested-user">
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "0.5rem",
-                          alignItems: "center",
-                        }}
+                      <Link
+                        to={`/profile/${username}`}
+                        className="textdecoration-none"
                       >
-                        <img
-                          className="user-avatar-img"
-                          src={profileAvatar}
-                          alt="avatar"
-                        />
-                        <div className="flex-col">
-                          <span>
-                            {firstName} {lastName}
-                          </span>
-                          <small>@{username}</small>
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "0.5rem",
+                            alignItems: "center",
+                          }}
+                        >
+                          <img
+                            className="user-avatar-img"
+                            src={profileAvatar}
+                            alt="avatar"
+                          />
+                          <div className="flex-col">
+                            <span>
+                              {firstName} {lastName}
+                            </span>
+                            <small>@{username}</small>
+                          </div>
                         </div>
-                      </div>
-                      <div className="suggested-user-follow-btn">follow</div>
+                      </Link>
+
+                      <div className="suggested-user-follow-btn">Follow</div>
                     </li>
                   );
                 }

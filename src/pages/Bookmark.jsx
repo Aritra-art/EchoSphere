@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
 import { Postcard } from "../components/PostCard";
 import { getBookmarkArray } from "../backend/utils/getBookmarkArray";

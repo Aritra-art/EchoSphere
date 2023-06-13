@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
 import "./Login.css";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
-
 export const Login = () => {
   const [loginValue, setLoginValue] = useState({
     username: "",
@@ -64,6 +63,12 @@ export const Login = () => {
   return (
     <div className="login-layout-container">
       <Header />
+      <div style={{ margin: " 2rem auto", width: "8rem" }}>
+        <NavLink to="/explore" className="nav-pill">
+          <i className="fa-solid fa-compass"></i>
+          <span style={{ marginLeft: "10px" }}>Explore</span>
+        </NavLink>
+      </div>
       <section>
         <div className="login-layout">
           <h1 className="center-text login-header">Login</h1>

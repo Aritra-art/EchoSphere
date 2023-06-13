@@ -3,7 +3,7 @@ import "./SuggestedUsers.css";
 import { DataContext } from "../context/DataContext";
 import { getUser } from "../backend/utils/getUser";
 import { SearchPeople } from "./SearchPeople";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const SuggestedUsers = () => {
   const { postState } = useContext(DataContext);
@@ -11,6 +11,7 @@ export const SuggestedUsers = () => {
   const suggestedUsers = postState?.users?.filter(
     (user) => user?.username !== loggedInUser?.username
   );
+  const navigate = useNavigate();
   return (
     <>
       <div className="search-people-layout">
@@ -50,7 +51,18 @@ export const SuggestedUsers = () => {
                       </div>
                     </Link>
 
-                    <div className="suggested-user-follow-btn">Follow +</div>
+                    <div
+                      className="suggested-user-follow-btn"
+                      onClick={() => {
+                        if (loggedInUser) {
+                        } else {
+                          alert("please login to follow");
+                          navigate("/login");
+                        }
+                      }}
+                    >
+                      Follow{" "}
+                    </div>
                   </li>
                 );
               }
