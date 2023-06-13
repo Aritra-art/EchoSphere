@@ -12,7 +12,15 @@ export const Layout = ({ children }) => {
         <div style={{ flexBasis: "25%", border: "1px solid" }}>
           <RouteLayout />
         </div>
-        <div style={{ border: "1px solid", flexBasis: "50%", flexGrow: 1 }}>
+        <div
+          style={{
+            border: "1px solid",
+            flexBasis: "50%",
+            flexGrow: 1,
+            height: "90vh",
+            overflow: "scroll",
+          }}
+        >
           {children}
         </div>
         <div style={{ flexBasis: "25%" }}>
