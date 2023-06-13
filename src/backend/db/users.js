@@ -7,7 +7,7 @@ import { formatDate } from "../utils/authUtils";
 
 export const users = [
   {
-    _id: uuid(),
+    _id: "751d5b74-5d05-404a-84f2-a1ff0e2d36bb",
     firstName: "Aritra",
     lastName: "Chowdhury",
     username: "aritrachowdhury",
@@ -19,7 +19,7 @@ export const users = [
     website: "https://aritraportfolio.netlify.app/",
   },
   {
-    _id: uuid(),
+    _id: "992884e6-24a1-4b86-8c83-abcffe9fb241",
     firstName: "Subham",
     lastName: "Soni",
     username: "subhamsoni",
@@ -31,7 +31,7 @@ export const users = [
     website: "https://www.mantrahealthclub.com/mantra/",
   },
   {
-    _id: uuid(),
+    _id: "7593901f-d0c2-45a0-8a82-1705080a4d6c",
     firstName: "Rinku",
     lastName: "Singh",
     username: "rinkusingh",

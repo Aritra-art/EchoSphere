@@ -6,9 +6,10 @@ import { SearchPeople } from "./SearchPeople";
 import { Link, useNavigate } from "react-router-dom";
 import { followUserService } from "../services/followUserService";
 import { getToken } from "../backend/utils/getToken";
+import { isUserFollowed } from "../backend/utils/isUserFollowed";
 
 export const SuggestedUsers = () => {
-  const { postState } = useContext(DataContext);
+  const { postState, dispatchPost } = useContext(DataContext);
   console.log(postState?.users);
   const token = getToken();
   const loggedInUser = getUser();
@@ -16,6 +17,12 @@ export const SuggestedUsers = () => {
     try {
       const response = await followUserService(userId, token);
       console.log(response);
+      if (response?.status === 200) {
+        dispatchPost({
+          type: "UPDATE_USER_FOLLOW",
+          payload: [response?.data?.followUser, response?.data?.user],
+        });
+      }
     } catch (error) {
       console.error(error);
     }
@@ -74,7 +81,9 @@ export const SuggestedUsers = () => {
                         }
                       }}
                     >
-                      Follow
+                      {isUserFollowed(postState?.users, _id)
+                        ? "Unfollow"
+                        : "Follow"}
                     </div>
                   </li>
                 );
