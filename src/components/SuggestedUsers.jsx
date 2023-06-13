@@ -11,7 +11,6 @@ import { followUser } from "../backend/utils/followUser";
 
 export const SuggestedUsers = () => {
   const { postState, dispatchPost } = useContext(DataContext);
-  console.log(postState?.users);
   const token = getToken();
   const loggedInUser = getUser();
 
