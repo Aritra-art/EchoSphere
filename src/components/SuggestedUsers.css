@@ -19,8 +19,13 @@
 }
 .suggested-user-follow-btn {
   cursor: pointer;
+  color: #ff3b30;
+  font-weight: 800;
 }
 
 .search-people-layout {
   margin: 1rem 1rem 0 1rem;
+}
+.margin-bottom {
+  margin-bottom: 0.5rem;
 }

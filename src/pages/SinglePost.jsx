@@ -39,7 +39,11 @@ export const SinglePost = () => {
             <div style={{ display: "flex", gap: "0.5rem" }}>
               <img
                 className="user-avatar-img"
-                src="https://picsum.photos/id/67/60/60"
+                src={
+                  postState?.users?.find(
+                    ({ username }) => username === singlePost?.username
+                  ).profileAvatar
+                }
                 alt="avatar"
               />
               <span style={{ alignSelf: "center" }}>
@@ -68,7 +72,7 @@ export const SinglePost = () => {
                 isPostLiked(singlePost?.likes, user) ? "fa solid" : "fa-regular"
               } fa-heart`}
               onClick={() => {
-                if (token?.length === 0) {
+                if (!token) {
                   alert("please login to continue");
                 } else {
                   if (!isPostLiked(singlePost?.likes, user)) {
@@ -91,7 +95,7 @@ export const SinglePost = () => {
                   : "fa-regular"
               } fa-bookmark`}
               onClick={() => {
-                if (token?.length === 0) {
+                if (!token) {
                   alert("please login to continue");
                 } else {
                   if (postState.bookmarks.includes(singlePost?._id)) {

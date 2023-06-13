@@ -55,6 +55,7 @@ export const Signup = () => {
             <label className="flex-col">
               Full Name{" "}
               <input
+                type="text"
                 placeholder="Aritra Chowdhury"
                 required
                 className="login-input"
@@ -66,6 +67,7 @@ export const Signup = () => {
             <label className="flex-col">
               Username{" "}
               <input
+                type="text"
                 placeholder="aritrachowdhury"
                 required
                 className="login-input"
@@ -77,6 +79,7 @@ export const Signup = () => {
             <label className="flex-col">
               Email Address{" "}
               <input
+                type="email"
                 placeholder="aritrachowdhury@gmail.com"
                 required
                 className="login-input"
@@ -88,6 +91,7 @@ export const Signup = () => {
             <label className="flex-col">
               Password{" "}
               <input
+                type="password"
                 placeholder="******"
                 required
                 className="login-input"
@@ -99,6 +103,7 @@ export const Signup = () => {
             <label className="flex-col">
               Confirm Password{" "}
               <input
+                type="password"
                 placeholder="******"
                 required
                 className="login-input"

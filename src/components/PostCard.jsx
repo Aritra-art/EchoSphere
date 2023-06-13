@@ -69,7 +69,7 @@ export const Postcard = ({ data }) => {
                       isPostLiked(likes, user) ? "fa solid" : "fa-regular"
                     } fa-heart`}
                     onClick={() => {
-                      if (token?.length === 0) {
+                      if (!token) {
                         alert("please login to continue");
                       } else {
                         if (!isPostLiked(likes, user)) {
@@ -90,7 +90,7 @@ export const Postcard = ({ data }) => {
                         : "fa-regular"
                     } fa-bookmark`}
                     onClick={() => {
-                      if (token?.length === 0) {
+                      if (!token) {
                         alert("please login to continue");
                       } else {
                         if (postState.bookmarks.includes(_id)) {

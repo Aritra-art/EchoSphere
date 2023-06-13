@@ -11,13 +11,10 @@ export const Navbar = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
   return (
     <div className="navbar-layout-container">
-      <p className="navbar-logo-header">
+      <p className="navbar-logo-header" onClick={() => navigate("/explore")}>
         <span className="orange-color">Echo</span>Sphere
       </p>
-      <NavLink to="/feed">Feed</NavLink>
-      <NavLink to="/explore">Explore</NavLink>
-      <NavLink to="/bookmark">Bookmark</NavLink>
-      {token?.length > 0 && (
+      {token && (
         <button
           onClick={() => {
             localStorage.removeItem("user");

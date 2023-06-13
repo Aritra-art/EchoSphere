@@ -14,7 +14,7 @@ export const users = [
     password: "aritrachowdhury123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    profileAvatar: "https://picsum.photos/id/1012/60/60",
+    profileAvatar: "https://picsum.photos/id/1012/200/200",
   },
   {
     _id: uuid(),
@@ -24,7 +24,7 @@ export const users = [
     password: "subhamsoni123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    profileAvatar: "https://picsum.photos/id/1009/60/60",
+    profileAvatar: "https://picsum.photos/id/1009/200/200",
   },
   {
     _id: uuid(),
@@ -34,6 +34,6 @@ export const users = [
     password: "rinkusingh123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    profileAvatar: "https://picsum.photos/id/1005/60/60",
+    profileAvatar: "https://picsum.photos/id/1005/200/200",
   },
 ];

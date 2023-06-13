@@ -10,6 +10,7 @@ import { RequireAuth } from "./services/RequireAuth";
 import { Bookmark } from "./pages/Bookmark";
 import { SinglePost } from "./pages/SinglePost";
 import { getToken } from "./backend/utils/getToken";
+import { SingleProfile } from "./pages/SingleProfile";
 
 function App() {
   const token = getToken();
@@ -58,9 +59,24 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="/post/:postId" element={<SinglePost />} />
+        <Route
+          path="/post/:postId"
+          element={
+            <Layout>
+              <SinglePost />
+            </Layout>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/profile/:username"
+          element={
+            <Layout>
+              <SingleProfile />
+            </Layout>
+          }
+        />
       </Routes>
     </div>
   );

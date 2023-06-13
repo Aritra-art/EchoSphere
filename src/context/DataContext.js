@@ -4,10 +4,12 @@ import { getAllPostsService } from "../services/getAllPostsService";
 import { getAllBookmarksService } from "../services/getAllBookmarksService";
 import { AuthContext } from "./AuthContext";
 import { getAllUsersService } from "../services/getAllUsersService";
+import { getToken } from "../backend/utils/getToken";
 
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
+  const token = getToken();
   const [postState, dispatchPost] = useReducer(postReducer, {
     posts: [],
     bookmarks: [],
@@ -55,8 +57,8 @@ export const DataContextProvider = ({ children }) => {
     getAllUsers();
   }, []);
   useEffect(() => {
-    isLoggedIn && getAllBookmarks();
-  }, [isLoggedIn]);
+    isLoggedIn && token && getAllBookmarks();
+  }, [isLoggedIn, token]);
 
   const value = { postState, dispatchPost };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

@@ -1,0 +1,23 @@
+.route-layout-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 2rem;
+}
+.nav-pill {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  border: 1px solid white;
+  border-radius: 0.6rem;
+  padding: 0.6rem;
+}
+
+.nav-pill:hover {
+  cursor: pointer;
+  color: #ff3b30;
+  font-weight: bold;
+  border: 1px solid black;
+}
