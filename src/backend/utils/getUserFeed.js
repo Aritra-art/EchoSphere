@@ -11,10 +11,10 @@ export const getUserFeed = (postState) => {
     return followUsernameArr.includes(username);
   });
   userFeed = [
+    ...followUserFeed,
     ...postState?.posts?.filter(
       ({ username }) => username === loggedInUser?.username
     ),
-    ...followUserFeed,
   ];
   return userFeed;
 };

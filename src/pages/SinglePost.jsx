@@ -10,6 +10,7 @@ import { postLikeHandler } from "../services/postLikeHandler";
 import { isPostLiked } from "../backend/utils/isPostLiked";
 import { DataContext } from "../context/DataContext";
 import { getPostDate } from "../backend/utils/getPostDate";
+import { Navbar } from "../components/Navbar";
 
 export const SinglePost = () => {
   const [singlePost, setSinglePost] = useState({});
@@ -33,6 +34,8 @@ export const SinglePost = () => {
 
   return (
     <>
+      <Navbar from="Post" />
+      <div style={{ marginBottom: "4rem" }}></div>
       {Object.keys(singlePost)?.length > 0 && (
         <div className="postcard-layout">
           <div className="postcard-header-layout">

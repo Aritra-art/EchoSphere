@@ -7,9 +7,8 @@ import { RouteLayout } from "../components/RouteLayout";
 export const Layout = ({ children }) => {
   return (
     <>
-      <Navbar />
       <div className="layout-section">
-        <div style={{ flexBasis: "25%", border: "1px solid" }}>
+        <div style={{ flexBasis: "25%" }}>
           <RouteLayout />
         </div>
         <div
@@ -17,7 +16,7 @@ export const Layout = ({ children }) => {
             border: "1px solid",
             flexBasis: "50%",
             flexGrow: 1,
-            height: "90vh",
+            height: "100vh",
             overflow: "scroll",
           }}
         >

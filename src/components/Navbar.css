@@ -1,12 +1,13 @@
 .navbar-layout-container {
-  background-color: #f7f7f7;
-  display: flex;
-  justify-content: space-between;
-  padding: 1.4rem 0.9rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.6rem 0.9rem;
+  width: 49.9%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 4px;
+  z-index: 2;
+  position: fixed;
 }
 .navbar-logo-header {
   font-weight: bold;
   font-size: 1.5rem;
-  cursor: pointer;
+  color: #ff3b30;
 }

@@ -1,19 +1,26 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getSingleUserService } from "../services/getSingleUserService";
 import "./SingleProfile.css";
 import { getUser } from "../backend/utils/getUser";
 import { DataContext } from "../context/DataContext";
 import { getAllPostsByUsernameService } from "../services/getAllPostsByUsernameService";
 import { Postcard } from "../components/PostCard";
+import { Navbar } from "../components/Navbar";
+import { isUserFollowed } from "../backend/utils/isUserFollowed";
+import { unFollowUser } from "../backend/utils/unFollowUser";
+import { followUser } from "../backend/utils/followUser";
+import { getToken } from "../backend/utils/getToken";
 
 export const SingleProfile = () => {
   const { username } = useParams();
 
   const user = getUser();
+  const token = getToken();
   const [singleUser, setSingleUser] = useState({});
   const [userPosts, setUserPosts] = useState([]);
-  const { postState } = useContext(DataContext);
+  const { postState, dispatchPost } = useContext(DataContext);
+  const navigate = useNavigate();
   const getPostsByUsername = async () => {
     try {
       const response = await getAllPostsByUsernameService(username);
@@ -40,6 +47,12 @@ export const SingleProfile = () => {
   }, [username, postState?.users, postState?.posts]);
   return (
     <>
+      <div style={{ marginBottom: "4rem" }}>
+        <Navbar
+          from={`${singleUser?.firstName ?? ""} ${singleUser?.lastName ?? ""}`}
+        />
+      </div>
+
       {Object.keys(singleUser)?.length > 0 && (
         <div className="single-user-container-layout">
           <img
@@ -54,7 +67,25 @@ export const SingleProfile = () => {
           {user && user.username === singleUser?.username ? (
             <div className="single-user-edit-button">Edit Profile</div>
           ) : (
-            <div className="single-user-edit-button">Follow</div>
+            <div
+              className="single-user-edit-button"
+              onClick={() => {
+                if (user) {
+                  if (isUserFollowed(postState?.users, singleUser?._id)) {
+                    unFollowUser(token, singleUser?._id, dispatchPost);
+                  } else {
+                    followUser(singleUser?._id, token, dispatchPost);
+                  }
+                } else {
+                  alert("please login to follow");
+                  navigate("/login");
+                }
+              }}
+            >
+              {isUserFollowed(postState?.users, singleUser?._id)
+                ? "Unfollow"
+                : "Follow"}
+            </div>
           )}
           <p className="center-text single-user-profile-bio">
             {singleUser?.bio}
