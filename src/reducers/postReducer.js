@@ -15,6 +15,15 @@ export const postReducer = (postState, { type, payload }) => {
             : user
         ),
       };
+    case "UPDATE_USER_FOLLOWERS":
+      return {
+        ...postState,
+        users: postState?.users?.map((user) =>
+          user?._id === payload[0]?._id
+            ? { ...user, followers: [...user?.followers, payload[1]] }
+            : user
+        ),
+      };
     case "UPDATE_USER_UNFOLLOW":
       return {
         ...postState,
@@ -24,6 +33,20 @@ export const postReducer = (postState, { type, payload }) => {
                 ...user,
                 following: user?.following?.filter(
                   ({ _id }) => _id !== payload[0]?._id
+                ),
+              }
+            : user
+        ),
+      };
+    case "UPDATE_USER_UNFOLLOWERS":
+      return {
+        ...postState,
+        users: postState?.users?.map((user) =>
+          user._id === payload[0]._id
+            ? {
+                ...user,
+                followers: user?.followers?.filter(
+                  ({ _id }) => _id !== payload[1]._id
                 ),
               }
             : user

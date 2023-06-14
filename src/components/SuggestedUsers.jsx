@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./SuggestedUsers.css";
 import { DataContext } from "../context/DataContext";
 import { getUser } from "../backend/utils/getUser";
 import { SearchPeople } from "./SearchPeople";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getToken } from "../backend/utils/getToken";
 import { isUserFollowed } from "../backend/utils/isUserFollowed";
 import { followUser } from "../backend/utils/followUser";
@@ -14,10 +14,26 @@ export const SuggestedUsers = () => {
   const token = getToken();
   const loggedInUser = getUser();
 
-  const suggestedUsers = postState?.users?.filter(
-    (user) => user?.username !== loggedInUser?.username
-  );
+  const suggestedUsers = () => {
+    const suggestedUsers = postState?.users.filter(
+      ({ username, followers }) => {
+        if (username === loggedInUser?.username) {
+          return false;
+        } else if (followers.length === 0) {
+          return true;
+        } else {
+          return followers.some(
+            ({ username }) => username !== loggedInUser?.username
+          );
+        }
+      }
+    );
+    return suggestedUsers?.length > 3
+      ? suggestedUsers.splice(0, 3)
+      : suggestedUsers;
+  };
   const navigate = useNavigate();
+
   return (
     <>
       <div className="search-people-layout">
@@ -27,8 +43,8 @@ export const SuggestedUsers = () => {
         <h3 className="margin-bottom">Who to Follow ?</h3>
         <hr />
         <ul className="suggested-users">
-          {suggestedUsers.length > 0 &&
-            suggestedUsers?.map(
+          {suggestedUsers().length > 0 &&
+            suggestedUsers()?.map(
               ({ _id, firstName, lastName, username, profileAvatar }) => {
                 return (
                   <li key={_id} className="suggested-user">

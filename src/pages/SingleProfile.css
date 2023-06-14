@@ -27,8 +27,8 @@
   font-weight: bold;
 }
 .single-user-profile-bio {
-  margin: 1rem 0rem;
-  line-height: 1.5rem;
+  margin: 1rem 1rem;
+  line-height: 2rem;
 }
 .single-user-follow-layout {
   border: 1px solid;

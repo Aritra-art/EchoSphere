@@ -8,6 +8,10 @@ export const followUser = async (userId, token, dispatchPost) => {
         type: "UPDATE_USER_FOLLOW",
         payload: [response?.data?.followUser, response?.data?.user],
       });
+      dispatchPost({
+        type: "UPDATE_USER_FOLLOWERS",
+        payload: [response?.data?.followUser, response?.data?.user],
+      });
     }
   } catch (error) {
     console.error(error);
