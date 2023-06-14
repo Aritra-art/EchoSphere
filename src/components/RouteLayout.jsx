@@ -17,18 +17,24 @@ export const RouteLayout = () => {
   return (
     <div className="outer-route-layout-container">
       <div className="route-layout-container ">
-        <NavLink className="nav-pill" to="/feed" style={activeNavpill}>
-          <i className="fa-solid fa-house"></i>
-          <span style={{ marginLeft: "10px" }}>Feed</span>
-        </NavLink>
+        {token && (
+          <NavLink className="nav-pill" to="/feed" style={activeNavpill}>
+            <i className="fa-solid fa-house"></i>
+            <span style={{ marginLeft: "10px" }}>Feed</span>
+          </NavLink>
+        )}
+
         <NavLink style={activeNavpill} className="nav-pill" to="/explore">
           <i className="fa-solid fa-compass"></i>
           <span style={{ marginLeft: "10px" }}>Explore</span>
         </NavLink>
-        <NavLink style={activeNavpill} className="nav-pill" to="/bookmark">
-          <i className="fa-solid fa-bookmark"></i>
-          <span style={{ marginLeft: "10px" }}>Bookmark</span>
-        </NavLink>
+        {token && (
+          <NavLink style={activeNavpill} className="nav-pill" to="/bookmark">
+            <i className="fa-solid fa-bookmark"></i>
+            <span style={{ marginLeft: "10px" }}>Bookmark</span>
+          </NavLink>
+        )}
+
         {token && (
           <NavLink
             className="nav-pill"

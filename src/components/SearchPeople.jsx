@@ -1,11 +1,19 @@
 import { useContext, useState } from "react";
 import "./SearchPeople.css";
 import { DataContext } from "../context/DataContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { isUserFollowed } from "../backend/utils/isUserFollowed";
+import { getUser } from "../backend/utils/getUser";
+import { unFollowUser } from "../backend/utils/unFollowUser";
+import { followUser } from "../backend/utils/followUser";
+import { getToken } from "../backend/utils/getToken";
 
 export const SearchPeople = () => {
   const [userInput, setUserInput] = useState("");
-  const { postState } = useContext(DataContext);
+  const { postState, dispatchPost } = useContext(DataContext);
+  const navigate = useNavigate();
+  const loggedInUser = getUser();
+  const token = getToken();
   const searchedUsers =
     userInput.trim()?.length > 0 &&
     postState?.users?.filter(({ firstName }) =>
@@ -54,8 +62,27 @@ export const SearchPeople = () => {
                           </div>
                         </div>
                       </Link>
-
-                      <div className="suggested-user-follow-btn">Follow</div>
+                      {loggedInUser?.username !== username && (
+                        <div
+                          className="suggested-user-follow-btn"
+                          onClick={() => {
+                            if (loggedInUser) {
+                              if (isUserFollowed(postState?.users, _id)) {
+                                unFollowUser(token, _id, dispatchPost);
+                              } else {
+                                followUser(_id, token, dispatchPost);
+                              }
+                            } else {
+                              alert("please login to follow");
+                              navigate("/login");
+                            }
+                          }}
+                        >
+                          {isUserFollowed(postState?.users, _id)
+                            ? "Unfollow"
+                            : "Follow"}
+                        </div>
+                      )}
                     </li>
                   );
                 }
