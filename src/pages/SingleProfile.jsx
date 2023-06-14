@@ -63,6 +63,7 @@ export const SingleProfile = () => {
             <a
               target="_blank"
               href={singleUser?.website}
+              rel="noreferrer"
               style={{
                 textDecoration: "none",
                 color: "#ff3b30",

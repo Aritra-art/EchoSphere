@@ -15,6 +15,20 @@ export const postReducer = (postState, { type, payload }) => {
             : user
         ),
       };
+    case "UPDATE_USER_UNFOLLOW":
+      return {
+        ...postState,
+        users: postState?.users?.map((user) =>
+          user?._id === payload[1]?._id
+            ? {
+                ...user,
+                following: user?.following?.filter(
+                  ({ _id }) => _id !== payload[0]?._id
+                ),
+              }
+            : user
+        ),
+      };
     default:
       console.log("something went wrong");
   }
