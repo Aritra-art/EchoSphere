@@ -11,9 +11,14 @@ import { isPostLiked } from "../backend/utils/isPostLiked";
 import { DataContext } from "../context/DataContext";
 import { getPostDate } from "../backend/utils/getPostDate";
 import { Navbar } from "../components/Navbar";
+import { ShowFollowing } from "../components/ShowFollowing";
 
 export const SinglePost = () => {
   const [singlePost, setSinglePost] = useState({});
+  const [showModal, setShowModal] = useState({
+    show: false,
+    type: "",
+  });
   const { postState, dispatchPost } = useContext(DataContext);
   const { postId } = useParams();
   const getSinglePost = async () => {
@@ -35,6 +40,14 @@ export const SinglePost = () => {
   return (
     <>
       <Navbar from="Post" />
+      {showModal.show && (
+        <ShowFollowing
+          arr={singlePost?.likes?.likedBy}
+          setShowModal={setShowModal}
+          showModal={showModal}
+        />
+      )}
+
       <div style={{ marginBottom: "4rem" }}></div>
       {Object.keys(singlePost)?.length > 0 && (
         <div className="postcard-layout">
@@ -58,7 +71,6 @@ export const SinglePost = () => {
 
             <i className="fa-solid fa-ellipsis"></i>
           </div>
-
           <div className="postcard-content">{singlePost?.content}</div>
           <div>
             <img
@@ -67,8 +79,38 @@ export const SinglePost = () => {
               alt="postImage"
             />
           </div>
-
           <hr />
+          {singlePost?.likes?.likeCount > 0 && (
+            <>
+              <p
+                style={{
+                  margin: "0.5rem 0",
+                  fontSize: "1.2rem",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setShowModal((showModal) => ({
+                    ...showModal,
+                    show: true,
+                    type: "LIKED BY",
+                  }));
+                }}
+              >
+                <span
+                  style={{
+                    color: "#ff3b30",
+                    fontWeight: "bold",
+                    marginRight: "0.3rem",
+                  }}
+                >
+                  {singlePost?.likes?.likeCount}
+                </span>
+                Like{singlePost?.likes?.likeCount > 1 ? "s" : ""}
+              </p>
+              <hr />
+            </>
+          )}
+
           <div className="card-action-buttons">
             <i
               className={`${
