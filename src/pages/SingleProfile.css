@@ -44,3 +44,7 @@
   color: #ff3b30;
   font-size: 1.4rem;
 }
+.single-user-follow-layout-pill-name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

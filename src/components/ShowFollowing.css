@@ -22,3 +22,16 @@
 .modal-inner-content {
   margin-top: 1rem;
 }
+.modal-cross {
+  color: #ff3b30;
+  font-weight: bold;
+  height: fit-content;
+  border: 1px solid white;
+  border-radius: 0.6rem;
+  padding: 0px 2px;
+}
+.modal-cross:hover {
+  cursor: pointer;
+  border: 1px solid #ff3b30;
+  color: black;
+}

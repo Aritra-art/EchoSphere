@@ -55,7 +55,7 @@ export const SingleProfile = () => {
       {showModal.show && (
         <ShowFollowing
           arr={
-            showModal?.type === "Following"
+            showModal?.type === "FOLLOWING"
               ? singleUser?.following
               : singleUser?.followers
           }
@@ -128,14 +128,16 @@ export const SingleProfile = () => {
                 setShowModal((showModal) => ({
                   ...showModal,
                   show: true,
-                  type: "Following",
+                  type: "FOLLOWING",
                 }));
               }}
             >
               <span className="single-user-follow-layout-pill">
                 {singleUser?.following?.length}
               </span>
-              <span>Following</span>
+              <span className="single-user-follow-layout-pill-name">
+                Following
+              </span>
             </p>
             <p className="flex-col">
               <span className="single-user-follow-layout-pill">
@@ -149,14 +151,16 @@ export const SingleProfile = () => {
                 setShowModal((showModal) => ({
                   ...showModal,
                   show: true,
-                  type: "Followers",
+                  type: "FOLLOWERS",
                 }));
               }}
             >
               <span className="single-user-follow-layout-pill">
                 {singleUser?.followers?.length}
               </span>
-              <span>Followers</span>
+              <span className="single-user-follow-layout-pill-name">
+                Followers
+              </span>
             </p>
           </div>
           {userPosts.length > 0 && <Postcard data={userPosts} />}
