@@ -11,6 +11,7 @@ import { isUserFollowed } from "../backend/utils/isUserFollowed";
 import { unFollowUser } from "../backend/utils/unFollowUser";
 import { followUser } from "../backend/utils/followUser";
 import { getToken } from "../backend/utils/getToken";
+import { ShowFollowing } from "../components/ShowFollowing";
 
 export const SingleProfile = () => {
   const { username } = useParams();
@@ -19,6 +20,10 @@ export const SingleProfile = () => {
   const token = getToken();
   const [singleUser, setSingleUser] = useState({});
   const [userPosts, setUserPosts] = useState([]);
+  const [showModal, setShowModal] = useState({
+    show: false,
+    type: "",
+  });
   const { postState, dispatchPost } = useContext(DataContext);
   const navigate = useNavigate();
   const getPostsByUsername = async () => {
@@ -47,6 +52,17 @@ export const SingleProfile = () => {
   }, [username, postState?.users, postState?.posts]);
   return (
     <>
+      {showModal.show && (
+        <ShowFollowing
+          arr={
+            showModal?.type === "Following"
+              ? singleUser?.following
+              : singleUser?.followers
+          }
+          setShowModal={setShowModal}
+          showModal={showModal}
+        />
+      )}
       <div style={{ marginBottom: "4rem" }}>
         <Navbar
           from={`${singleUser?.firstName ?? ""} ${singleUser?.lastName ?? ""}`}
@@ -104,8 +120,18 @@ export const SingleProfile = () => {
               {singleUser?.website}
             </a>
           </p>
+
           <div className="single-user-follow-layout">
-            <p className="flex-col">
+            <p
+              className="flex-col "
+              onClick={() => {
+                setShowModal((showModal) => ({
+                  ...showModal,
+                  show: true,
+                  type: "Following",
+                }));
+              }}
+            >
               <span className="single-user-follow-layout-pill">
                 {singleUser?.following?.length}
               </span>
@@ -117,7 +143,16 @@ export const SingleProfile = () => {
               </span>
               <span>Posts</span>
             </p>
-            <p className="flex-col">
+            <p
+              className="flex-col"
+              onClick={() => {
+                setShowModal((showModal) => ({
+                  ...showModal,
+                  show: true,
+                  type: "Followers",
+                }));
+              }}
+            >
               <span className="single-user-follow-layout-pill">
                 {singleUser?.followers?.length}
               </span>
