@@ -1,7 +1,7 @@
 .navbar-layout-container {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 0.6rem 0.9rem;
-  width: 49.9%;
+  width: 50%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 4px;
   z-index: 2;
   position: fixed;

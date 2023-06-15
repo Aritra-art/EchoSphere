@@ -15,14 +15,14 @@ export const Layout = ({ children }) => {
           style={{
             border: "1px solid",
             flexBasis: "50%",
-            flexGrow: 1,
+            // flexGrow: 1,
             height: "100vh",
             overflow: "scroll",
           }}
         >
           {children}
         </div>
-        <div style={{ flexBasis: "25%" }}>
+        <div style={{ flexBasis: "25%", flexShrink: "1" }}>
           <SuggestedUsers />
         </div>
       </div>
