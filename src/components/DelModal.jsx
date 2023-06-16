@@ -16,8 +16,12 @@ export const DelModal = ({ setShowModal, postId }) => {
           <div>
             <button
               style={{
-                margin: "1rem 0",
+                margin: "1rem 0 0 0",
                 fontWeight: "bold",
+                padding: "0.5rem 1rem",
+                cursor: "pointer",
+                borderRadius: "0.6rem",
+                fontSize: "1.1rem",
               }}
               onClick={(e) => {
                 deleteAPost(postId, token, dispatchPost);

@@ -13,10 +13,12 @@ import { Link } from "react-router-dom";
 import { isUserFollowed } from "../backend/utils/isUserFollowed";
 import { deleteAPost } from "../backend/utils/deleteAPost";
 import { DelModal } from "./DelModal";
+import { unFollowUser } from "../backend/utils/unFollowUser";
+import { followUser } from "../backend/utils/followUser";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
-  const [showEllipsisContent, setShowEllipsisContent] = useState(false);
+  const [showEllipsisContent, setShowEllipsisContent] = useState({ id: false });
   const [showDelModal, setShowDelModal] = useState({ show: false, id: "" });
 
   const token = getToken();
@@ -24,7 +26,7 @@ export const Postcard = ({ data }) => {
 
   useEffect(() => {
     document.addEventListener("click", () => {
-      setShowEllipsisContent(() => false);
+      setShowEllipsisContent(() => ({ id: false }));
     });
   }, []);
 
@@ -49,7 +51,7 @@ export const Postcard = ({ data }) => {
                 key={_id}
                 className="postcard-layout"
                 onClick={() => {
-                  setShowEllipsisContent(() => false);
+                  setShowEllipsisContent(() => ({ [_id]: false }));
                 }}
               >
                 <div className="postcard-header-layout">
@@ -75,18 +77,17 @@ export const Postcard = ({ data }) => {
                     </div>
                   </Link>
 
-                  {!showEllipsisContent && (
+                  {!showEllipsisContent[_id] && token && (
                     <i
                       className="fa-solid fa-ellipsis"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setShowEllipsisContent(true);
+                        setShowEllipsisContent(() => ({ [_id]: true }));
                       }}
                     ></i>
                   )}
-                  {showEllipsisContent && (
+                  {showEllipsisContent[_id] && (
                     <div className="post-ellipsis-layout">
-                      {!token && <div>please login</div>}
                       {token && user?.username === username && (
                         <div className="post-ellipsis-container">
                           <div className="post-ellipsis-container-pill">
@@ -107,10 +108,23 @@ export const Postcard = ({ data }) => {
                         </div>
                       )}
                       {token && user?.username !== username && (
-                        <div>
-                          {isUserFollowed(postState?.users, _id)
-                            ? "Unfollow"
-                            : "Follow"}
+                        <div className="post-ellipsis-container">
+                          <div
+                            className="post-ellipsis-container-pill"
+                            onClick={() => {
+                              if (isUserFollowed(postState?.users, _id)) {
+                                // unFollowUser(token, _id, dispatchPost);
+                                console.log("unfollow");
+                              } else {
+                                // followUser(_id, token, dispatchPost);
+                                console.log("follow");
+                              }
+                            }}
+                          >
+                            {isUserFollowed(postState?.users, _id)
+                              ? "Unfollow"
+                              : "Follow"}
+                          </div>
                         </div>
                       )}
                     </div>
