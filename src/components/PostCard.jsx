@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getPostDate } from "../backend/utils/getPostDate";
 import { getToken } from "../backend/utils/getToken";
 import { DataContext } from "../context/DataContext";
@@ -10,14 +10,29 @@ import { postDislikeHandler } from "../services/postDislikeHandler";
 import { addToBookmarkHandler } from "../services/addToBookmarkHandler";
 import { removeFromBookmarkHandler } from "../services/removeFromBookmarkHandler";
 import { Link } from "react-router-dom";
+import { isUserFollowed } from "../backend/utils/isUserFollowed";
+import { deleteAPost } from "../backend/utils/deleteAPost";
+import { DelModal } from "./DelModal";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
+  const [showEllipsisContent, setShowEllipsisContent] = useState(false);
+  const [showDelModal, setShowDelModal] = useState({ show: false, id: "" });
 
   const token = getToken();
   const user = getUser();
+
+  useEffect(() => {
+    document.addEventListener("click", () => {
+      setShowEllipsisContent(() => false);
+    });
+  }, []);
+
   return (
     <>
+      {showDelModal.show && (
+        <DelModal setShowModal={setShowDelModal} postId={showDelModal?.id} />
+      )}
       {data?.length > 0 &&
         data.map(
           ({
@@ -30,7 +45,13 @@ export const Postcard = ({ data }) => {
             createdAt,
           }) => {
             return (
-              <div key={_id} className="postcard-layout">
+              <div
+                key={_id}
+                className="postcard-layout"
+                onClick={() => {
+                  setShowEllipsisContent(() => false);
+                }}
+              >
                 <div className="postcard-header-layout">
                   <Link
                     to={`/profile/${username}`}
@@ -48,13 +69,52 @@ export const Postcard = ({ data }) => {
                       />
                       <span style={{ alignSelf: "center" }}>
                         <span className="post-fullname">{fullname}</span> .{" "}
-                        {getPostDate(createdAt)}
+                        <small>{getPostDate(createdAt)}</small>
                         <p>@{username}</p>
                       </span>
                     </div>
                   </Link>
 
-                  <i className="fa-solid fa-ellipsis"></i>
+                  {!showEllipsisContent && (
+                    <i
+                      className="fa-solid fa-ellipsis"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowEllipsisContent(true);
+                      }}
+                    ></i>
+                  )}
+                  {showEllipsisContent && (
+                    <div className="post-ellipsis-layout">
+                      {!token && <div>please login</div>}
+                      {token && user?.username === username && (
+                        <div className="post-ellipsis-container">
+                          <div className="post-ellipsis-container-pill">
+                            Edit
+                          </div>
+                          <div
+                            className="post-ellipsis-container-pill"
+                            onClick={() => {
+                              setShowDelModal((showDelModal) => ({
+                                ...showDelModal,
+                                show: true,
+                                id: _id,
+                              }));
+                            }}
+                          >
+                            Delete
+                          </div>
+                        </div>
+                      )}
+                      {token && user?.username !== username && (
+                        <div>
+                          {isUserFollowed(postState?.users, _id)
+                            ? "Unfollow"
+                            : "Follow"}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
                 <Link to={`/post/${_id}`} className="textdecoration-none">
                   <div className="postcard-content">{content}</div>
