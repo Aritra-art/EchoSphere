@@ -24,7 +24,7 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
   };
   const updateUserHandler = (e) => {
     e.preventDefault();
-    updateUser(userInput, dispatchPost);
+    updateUser(userInput, dispatchPost, setEditProfile);
   };
   return (
     <div className="show-following-container-layout">
@@ -66,7 +66,14 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
                   onChange={handleInputChange}
                 />
               </label>
-              <button type="submit">Update</button>
+              <button
+                type="submit"
+                onClick={(e) => {
+                  e.target.innerText = "Updating . . .";
+                }}
+              >
+                Update
+              </button>
             </form>
           </div>
         </div>

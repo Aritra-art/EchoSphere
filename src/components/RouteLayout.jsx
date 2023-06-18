@@ -76,8 +76,9 @@ export const RouteLayout = () => {
           />
           <div className="flex-col">
             <span>
-              {postState?.users?.find((u) => u._id === user._id)?.firstName}{" "}
-              {postState?.users?.find((u) => u._id === user._id).lastName}
+              {user?.firstName} {user?.lastName}
+              {/* { postState?.users?.find((u) => u._id === user._id)?.firstName } */}
+              {/* {postState?.users?.find((u) => u._id === user._id).lastName} */}
             </span>
             <small>@{user?.username}</small>
           </div>
