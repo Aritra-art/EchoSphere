@@ -11,10 +11,10 @@ import { addToBookmarkHandler } from "../services/addToBookmarkHandler";
 import { removeFromBookmarkHandler } from "../services/removeFromBookmarkHandler";
 import { Link } from "react-router-dom";
 import { isUserFollowed } from "../backend/utils/isUserFollowed";
-import { deleteAPost } from "../backend/utils/deleteAPost";
-import { DelModal } from "./DelModal";
-import { unFollowUser } from "../backend/utils/unFollowUser";
 import { followUser } from "../backend/utils/followUser";
+import { unFollowUser } from "../backend/utils/unFollowUser";
+
+import { DelModal } from "./DelModal";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
@@ -112,16 +112,40 @@ export const Postcard = ({ data }) => {
                           <div
                             className="post-ellipsis-container-pill"
                             onClick={() => {
-                              if (isUserFollowed(postState?.users, _id)) {
-                                // unFollowUser(token, _id, dispatchPost);
+                              if (
+                                isUserFollowed(
+                                  postState?.users,
+                                  postState?.users?.find(
+                                    (user) => user?.username === username
+                                  )._id
+                                )
+                              ) {
+                                unFollowUser(
+                                  token,
+                                  postState?.users?.find(
+                                    (user) => user?.username === username
+                                  )._id,
+                                  dispatchPost
+                                );
                                 console.log("unfollow");
                               } else {
-                                // followUser(_id, token, dispatchPost);
+                                followUser(
+                                  postState?.users?.find(
+                                    (user) => user?.username === username
+                                  )._id,
+                                  token,
+                                  dispatchPost
+                                );
                                 console.log("follow");
                               }
                             }}
                           >
-                            {isUserFollowed(postState?.users, _id)
+                            {isUserFollowed(
+                              postState?.users,
+                              postState?.users?.find(
+                                (user) => user?.username === username
+                              )._id
+                            )
                               ? "Unfollow"
                               : "Follow"}
                           </div>

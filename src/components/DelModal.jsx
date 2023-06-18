@@ -24,14 +24,8 @@ export const DelModal = ({ setShowModal, postId }) => {
                 fontSize: "1.1rem",
               }}
               onClick={(e) => {
-                deleteAPost(postId, token, dispatchPost);
+                deleteAPost(postId, token, dispatchPost, setShowModal);
                 e.target.innerText = "Deleting . . .";
-                if (!postState?.posts?.find(({ _id }) => _id === postId)) {
-                  setShowModal((showDelModal) => ({
-                    ...showDelModal,
-                    show: false,
-                  }));
-                }
               }}
             >
               Yes
