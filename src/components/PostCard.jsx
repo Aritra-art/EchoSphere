@@ -182,9 +182,7 @@ export const Postcard = ({ data }) => {
                         }
                       }
                     }}
-                  >
-                    <span className="margin-left">{likes?.likeCount}</span>
-                  </i>
+                  ></i>
                   <i className="fa-regular fa-comment"></i>
                   <i
                     className={`${

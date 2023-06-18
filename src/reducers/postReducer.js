@@ -6,6 +6,21 @@ export const postReducer = (postState, { type, payload }) => {
       return { ...postState, bookmarks: payload };
     case "SET_ALL_USERS":
       return { ...postState, users: payload };
+    case "UPDATE_USER_PROFILE":
+      return {
+        ...postState,
+        posts: postState?.posts?.map((post) =>
+          post?.username === payload.username
+            ? {
+                ...post,
+                fullname: `${payload?.firstName} ${payload?.lastName}`,
+              }
+            : post
+        ),
+        users: postState?.users?.map((user) =>
+          user._id === payload._id ? { ...payload } : user
+        ),
+      };
     case "UPDATE_USER_FOLLOW":
       return {
         ...postState,

@@ -63,8 +63,14 @@ export const SinglePost = () => {
                 alt="avatar"
               />
               <span style={{ alignSelf: "center" }}>
-                <span className="post-fullname">{singlePost?.fullname}</span> .{" "}
-                {getPostDate(singlePost?.createdAt)}
+                <span className="post-fullname">
+                  {
+                    postState?.posts?.find(
+                      (post) => post.username === singlePost?.username
+                    ).fullname
+                  }
+                </span>{" "}
+                . {getPostDate(singlePost?.createdAt)}
                 <p>@{singlePost?.username}</p>
               </span>
             </div>

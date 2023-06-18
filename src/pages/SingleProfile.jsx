@@ -12,6 +12,7 @@ import { unFollowUser } from "../backend/utils/unFollowUser";
 import { followUser } from "../backend/utils/followUser";
 import { getToken } from "../backend/utils/getToken";
 import { ShowFollowing } from "../components/ShowFollowing";
+import { ShowEdit } from "../components/ShowEdit";
 
 export const SingleProfile = () => {
   const { username } = useParams();
@@ -24,12 +25,14 @@ export const SingleProfile = () => {
     show: false,
     type: "",
   });
+  const [editProfile, setEditProfile] = useState({ show: false, type: "" });
   const { postState, dispatchPost } = useContext(DataContext);
   const navigate = useNavigate();
   const getPostsByUsername = async () => {
     try {
       const response = await getAllPostsByUsernameService(username);
       if (response?.status === 200) {
+        console.log(response?.data?.posts);
         setUserPosts(response?.data?.posts);
       }
     } catch (error) {
@@ -63,6 +66,13 @@ export const SingleProfile = () => {
           showModal={showModal}
         />
       )}
+      {editProfile.show && (
+        <ShowEdit
+          obj={singleUser}
+          type={editProfile?.type}
+          setEditProfile={setEditProfile}
+        />
+      )}
       <div style={{ marginBottom: "4rem" }}>
         <Navbar
           from={`${singleUser?.firstName ?? ""} ${singleUser?.lastName ?? ""}`}
@@ -81,7 +91,18 @@ export const SingleProfile = () => {
           </h2>
           <h3 className="center-text gray-color">@{singleUser?.username}</h3>
           {user && user.username === singleUser?.username ? (
-            <div className="single-user-edit-button">Edit Profile</div>
+            <div
+              className="single-user-edit-button"
+              onClick={() => {
+                setEditProfile((editProfile) => ({
+                  ...editProfile,
+                  show: true,
+                  type: "EDIT PROFILE",
+                }));
+              }}
+            >
+              Edit Profile
+            </div>
           ) : (
             <div
               className="single-user-edit-button"

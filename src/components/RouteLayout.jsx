@@ -4,10 +4,12 @@ import { getToken } from "../backend/utils/getToken";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { getUser } from "../backend/utils/getUser";
+import { DataContext } from "../context/DataContext";
 
 export const RouteLayout = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContext(AuthContext);
+  const { postState } = useContext(DataContext);
   const token = getToken();
   const user = getUser();
   const activeNavpill = ({ isActive }) => ({
@@ -74,7 +76,8 @@ export const RouteLayout = () => {
           />
           <div className="flex-col">
             <span>
-              {user?.firstName} {user?.lastName}
+              {postState?.users?.find((u) => u._id === user._id)?.firstName}{" "}
+              {postState?.users?.find((u) => u._id === user._id).lastName}
             </span>
             <small>@{user?.username}</small>
           </div>

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "./ShowFollowing.css";
 
 export const ShowFollowing = ({ arr, setShowModal, showModal }) => {
-  console.log(arr);
   return (
     <div className="show-following-container-layout">
       <div className="modal-content">
