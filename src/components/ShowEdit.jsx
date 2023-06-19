@@ -31,7 +31,7 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
       <div className="modal-content edit-form-layout">
         <div>
           <span>{type}</span>
-          <div className="">
+          <div>
             <form className="show-edit-form" onSubmit={updateUserHandler}>
               <label className="editform-label">
                 First Name{" "}
@@ -71,6 +71,7 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
                 />
               </label>
               <button
+                className="update-btn"
                 type="submit"
                 onClick={(e) => {
                   e.target.innerText = "Updating . . .";

@@ -70,8 +70,19 @@ export const Postcard = ({ data }) => {
                         alt="avatar"
                       />
                       <span style={{ alignSelf: "center" }}>
-                        <span className="post-fullname">{fullname}</span> .{" "}
-                        <small>{getPostDate(createdAt)}</small>
+                        <span className="post-fullname">
+                          {
+                            postState?.users?.find(
+                              (u) => u.username === username
+                            )?.firstName
+                          }{" "}
+                          {
+                            postState?.users?.find(
+                              (u) => u.username === username
+                            )?.lastName
+                          }
+                        </span>{" "}
+                        . <small>{getPostDate(createdAt)}</small>
                         <p>@{username}</p>
                       </span>
                     </div>

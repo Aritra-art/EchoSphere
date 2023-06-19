@@ -65,9 +65,14 @@ export const SinglePost = () => {
               <span style={{ alignSelf: "center" }}>
                 <span className="post-fullname">
                   {
-                    postState?.posts?.find(
-                      (post) => post.username === singlePost?.username
-                    ).fullname
+                    postState?.users?.find(
+                      (user) => user.username === singlePost?.username
+                    )?.firstName
+                  }{" "}
+                  {
+                    postState?.users?.find(
+                      (user) => user.username === singlePost?.username
+                    )?.lastName
                   }
                 </span>{" "}
                 . {getPostDate(singlePost?.createdAt)}
