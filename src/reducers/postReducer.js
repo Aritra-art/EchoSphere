@@ -9,14 +9,6 @@ export const postReducer = (postState, { type, payload }) => {
     case "UPDATE_USER_PROFILE":
       return {
         ...postState,
-        posts: postState?.posts?.map((post) =>
-          post?.username === payload.username
-            ? {
-                ...post,
-                fullname: `${payload?.firstName} ${payload?.lastName}`,
-              }
-            : post
-        ),
         users: postState?.users?.map((user) =>
           user._id === payload._id ? { ...payload } : user
         ),
