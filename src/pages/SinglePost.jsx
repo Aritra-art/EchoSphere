@@ -12,6 +12,7 @@ import { DataContext } from "../context/DataContext";
 import { getPostDate } from "../backend/utils/getPostDate";
 import { Navbar } from "../components/Navbar";
 import { ShowFollowing } from "../components/ShowFollowing";
+import { PostCardShimmer } from "../components/PostCardShimmer";
 
 export const SinglePost = () => {
   const [singlePost, setSinglePost] = useState({});

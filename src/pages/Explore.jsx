@@ -10,7 +10,7 @@ export const Explore = () => {
     <>
       <Navbar from="Explore" />
       <div style={{ marginTop: "4rem" }}>
-        {postState?.posts?.length === 0 && <PostCardShimmer />}
+        {postState?.loading && <PostCardShimmer />}
         {postState?.posts?.length > 0 && <Postcard data={postState?.posts} />}
       </div>
     </>

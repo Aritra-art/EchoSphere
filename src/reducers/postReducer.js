@@ -59,6 +59,10 @@ export const postReducer = (postState, { type, payload }) => {
             : user
         ),
       };
+    case "SET_LOADING_TRUE":
+      return { ...postState, loading: payload };
+    case "SET_LOADING_FALSE":
+      return { ...postState, loading: payload };
     default:
       console.log("something went wrong");
   }

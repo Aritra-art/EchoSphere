@@ -3,6 +3,7 @@ import { DataContext } from "../context/DataContext";
 import { Postcard } from "../components/PostCard";
 import { getBookmarkArray } from "../backend/utils/getBookmarkArray";
 import { Navbar } from "../components/Navbar";
+import { PostCardShimmer } from "../components/PostCardShimmer";
 
 export const Bookmark = () => {
   const { postState } = useContext(DataContext);
@@ -12,7 +13,9 @@ export const Bookmark = () => {
   return (
     <>
       <Navbar from="Bookmark" />
+
       <div style={{ marginTop: "4rem" }}>
+        {postState?.loading && <PostCardShimmer />}
         {postState?.bookmarks?.length > 0 && <Postcard data={bookmarkArray} />}
       </div>
     </>
