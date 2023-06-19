@@ -5,7 +5,8 @@ import { Header } from "../components/Header";
 
 export const Signup = () => {
   const [signupValue, setSignupValue] = useState({
-    fullname: "",
+    firstName: "",
+    lastName: "",
     username: "",
     email: "",
     password: "",
@@ -53,14 +54,26 @@ export const Signup = () => {
           <h1 className="center-text login-header">Signup</h1>
           <form className="login-form-container" onSubmit={signupFormHandler}>
             <label className="flex-col">
-              Full Name{" "}
+              First Name{" "}
               <input
                 type="text"
-                placeholder="Aritra Chowdhury"
+                placeholder="Aritra"
                 required
                 className="login-input"
-                name="fullname"
-                value={signupValue.fullname}
+                name="firstName"
+                value={signupValue.firstName}
+                onChange={handleSignupInputChange}
+              />
+            </label>
+            <label className="flex-col">
+              Last Name{" "}
+              <input
+                type="text"
+                placeholder="Chowdhury"
+                required
+                className="login-input"
+                name="lastName"
+                value={signupValue.lastName}
                 onChange={handleSignupInputChange}
               />
             </label>

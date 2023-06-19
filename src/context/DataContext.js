@@ -55,8 +55,6 @@ export const DataContextProvider = ({ children }) => {
   useEffect(() => {
     getAllPosts();
     getAllUsers();
-  }, []);
-  useEffect(() => {
     isLoggedIn && token && getAllBookmarks();
   }, [isLoggedIn, token]);
 

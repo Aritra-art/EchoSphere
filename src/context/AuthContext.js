@@ -1,7 +1,8 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { userLoginService } from "../services/userLoginService";
 import { userSignupService } from "../services/userSignupService";
 import { useNavigate } from "react-router-dom";
+import { DataContext, getAllUsers } from "./DataContext";
 
 export const AuthContext = createContext();
 
@@ -30,6 +31,7 @@ export const AuthContextProvider = ({ children }) => {
     try {
       const response = await userSignupService(signupData);
       if (response?.status === 201) {
+        console.log(response?.data?.createdUser);
         localStorage.setItem("token", response?.data?.encodedToken);
         localStorage.setItem(
           "user",

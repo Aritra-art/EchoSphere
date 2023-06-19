@@ -28,38 +28,42 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
   };
   return (
     <div className="show-following-container-layout">
-      <div className="modal-content">
+      <div className="modal-content edit-form-layout">
         <div>
           <span>{type}</span>
           <div className="">
             <form className="show-edit-form" onSubmit={updateUserHandler}>
-              <label>
+              <label className="editform-label">
                 First Name{" "}
                 <input
+                  className="editform-label-input"
                   name="firstName"
                   value={userInput?.firstName}
                   onChange={handleInputChange}
                 />
               </label>
-              <label>
+              <label className="editform-label">
                 Last Name{" "}
                 <input
+                  className="editform-label-input"
                   name="lastName"
                   value={userInput?.lastName}
                   onChange={handleInputChange}
                 />
               </label>
-              <label>
+              <label className="editform-label">
                 Bio{" "}
                 <textarea
+                  className="editform-label-input"
                   name="bio"
                   value={userInput?.bio}
                   onChange={handleInputChange}
                 />
               </label>
-              <label>
+              <label className="editform-label">
                 Website{" "}
                 <input
+                  className="editform-label-input"
                   type="website"
                   name="website"
                   value={userInput?.website}

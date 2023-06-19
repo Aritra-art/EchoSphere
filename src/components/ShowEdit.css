@@ -4,3 +4,27 @@
   border: 1px solid;
   margin: 1rem 0 1rem 1rem;
 }
+.edit-form-layout {
+  width: 45%;
+}
+.editform-label {
+  text-transform: capitalize;
+  margin: 0.8rem;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: #ff3b30;
+}
+.editform-label-input {
+  padding: 0.6rem;
+  width: 15rem;
+  border: 1.5px solid;
+  outline: none;
+  border-radius: 0.6rem;
+}
+.editform-label-input:focus {
+  border: 1.5px solid #ff3b30;
+}
+textarea {
+  height: 4rem;
+}

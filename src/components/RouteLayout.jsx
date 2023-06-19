@@ -78,7 +78,8 @@ export const RouteLayout = () => {
             <span>
               {/* {user?.firstName} {user?.lastName} */}
               {user &&
-                postState?.users?.find((u) => u._id === user._id)?.firstName}
+                postState?.users?.find((u) => u._id === user._id)
+                  ?.firstName}{" "}
               {user &&
                 postState?.users?.find((u) => u._id === user._id)?.lastName}
             </span>

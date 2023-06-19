@@ -8,7 +8,7 @@ export const getUserFeed = (postState) => {
     const followUsernameArr = loggedInUser?.following?.map(
       ({ username }) => username
     );
-    return followUsernameArr.includes(username);
+    return followUsernameArr?.includes(username);
   });
   userFeed = [
     ...followUserFeed,

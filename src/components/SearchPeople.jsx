@@ -52,7 +52,7 @@ export const SearchPeople = () => {
                           <img
                             className="user-avatar-img"
                             src={profileAvatar}
-                            alt="avatar"
+                            alt="profile-avatar"
                           />
                           <div className="flex-col">
                             <span>
