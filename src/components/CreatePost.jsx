@@ -2,15 +2,17 @@ import { useContext, useState } from "react";
 import { getUser } from "../backend/utils/getUser";
 import "./CreatePost.css";
 import { DataContext } from "../context/DataContext";
+import { getToken } from "../backend/utils/getToken";
+import { createPost } from "../backend/utils/createPost";
 
 export const CreatePost = () => {
   const [userInput, setUserInput] = useState("");
   const [userImage, setUserImage] = useState([]);
-  console.log(userImage);
+  const { dispatchPost } = useContext(DataContext);
   const user = getUser();
+  const token = getToken();
   const { postState } = useContext(DataContext);
 
-  const createPost = () => {};
   return (
     <>
       <div className="create-post-layout-container">
@@ -30,7 +32,7 @@ export const CreatePost = () => {
             <div
               className="no-outline"
               role="textbox"
-              contentEditable
+              contentEditable="true"
               placeholder="What's happening?"
               onInput={(e) => setUserInput(e.target.textContent)}
             />
@@ -81,9 +83,12 @@ export const CreatePost = () => {
             </label>
 
             <button
-              onClick={createPost}
+              onClick={() => {
+                createPost(userInput, userImage, dispatchPost);
+                setUserInput("");
+              }}
               className="create-post-post-btn"
-              disabled={userInput.length === 0}
+              disabled={userImage.length === 0 && userInput.length === 0}
             >
               post
             </button>

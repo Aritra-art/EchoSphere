@@ -87,7 +87,6 @@ export const createPostHandler = function (schema, request) {
         dislikedBy: [],
       },
       username: user.username,
-      createdAt: formatDate(),
       updatedAt: formatDate(),
     };
     this.db.posts.insert(post);

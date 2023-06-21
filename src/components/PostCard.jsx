@@ -23,6 +23,7 @@ export const Postcard = ({ data }) => {
 
   const token = getToken();
   const user = getUser();
+  console.log(postState?.posts);
 
   useEffect(() => {
     document.addEventListener("click", () => {
