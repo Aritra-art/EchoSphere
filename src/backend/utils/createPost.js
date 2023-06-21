@@ -8,21 +8,16 @@ const getImages = async (userImage) => {
     for (let image of userImage) {
       const response = await uploadImage(image.image);
       postImage = [...postImage, response?.url];
-      return postImage;
     }
+    return postImage;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const createPost = async (
-  userInput,
-  userImage,
-  dispatchPost,
-  setUserInput,
-  setUserImage
-) => {
+export const createPost = async (userInput, userImage, dispatchPost) => {
   try {
+    alert("we will notify you, once your post is uploaded");
     const user = getUser();
     const postImage = userImage.length > 0 ? await getImages(userImage) : [];
     const response = await createPostService({
@@ -36,6 +31,7 @@ export const createPost = async (
         type: "SET_ALL_POSTS",
         payload: response?.data?.posts,
       });
+      alert("post uploaded successfully");
     }
   } catch (error) {
     console.error(error);

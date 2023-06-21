@@ -32,9 +32,12 @@ export const CreatePost = () => {
             <div
               className="no-outline"
               role="textbox"
+              // textcontent={userInput}
               contentEditable="true"
               placeholder="What's happening?"
-              onInput={(e) => setUserInput(e.target.textContent)}
+              onInput={(e) => {
+                setUserInput(e.target.textContent);
+              }}
             />
             {userImage.length > 0 &&
               userImage.map((img) => {
