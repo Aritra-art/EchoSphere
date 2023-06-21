@@ -4,6 +4,7 @@ import { getUserFeed } from "../backend/utils/getUserFeed";
 import { Postcard } from "../components/PostCard";
 import { PostCardShimmer } from "../components/PostCardShimmer";
 import { Navbar } from "../components/Navbar";
+import { CreatePost } from "../components/CreatePost";
 
 export const Feed = () => {
   const { postState } = useContext(DataContext);
@@ -14,6 +15,7 @@ export const Feed = () => {
       <Navbar from="Home" />
       <div style={{ marginTop: "4rem" }}>
         {postState?.loading && <PostCardShimmer />}
+        {!postState?.loding && <CreatePost />}
         {userFeed?.length > 0 && <Postcard data={userFeed} />}
       </div>
     </>

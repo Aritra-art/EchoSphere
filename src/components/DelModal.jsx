@@ -33,6 +33,12 @@ export const DelModal = ({ setShowModal, postId }) => {
               Yes
             </button>
             <button
+              onClick={() => {
+                setShowModal((showDelModal) => ({
+                  ...showDelModal,
+                  show: false,
+                }));
+              }}
               style={{
                 margin: "1rem 0 0 1rem",
                 fontWeight: "bold",
