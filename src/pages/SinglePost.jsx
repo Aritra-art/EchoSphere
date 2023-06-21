@@ -37,6 +37,7 @@ export const SinglePost = () => {
   }, [postId, postState?.posts]);
   const token = getToken();
   const user = getUser();
+  console.log(singlePost?.postImage);
 
   return (
     <>
@@ -84,13 +85,18 @@ export const SinglePost = () => {
             <i className="fa-solid fa-ellipsis"></i>
           </div>
           <div className="postcard-content">{singlePost?.content}</div>
-          <div>
-            <img
-              src={singlePost?.postImage}
-              className="postcard-content-img"
-              alt="postImage"
-            />
-          </div>
+          {singlePost?.postImage.length > 0 &&
+            singlePost?.postImage.map((img, id) => {
+              return (
+                <div key={id}>
+                  <img
+                    src={img}
+                    className="postcard-content-img"
+                    alt="postImage"
+                  />
+                </div>
+              );
+            })}
           <hr />
           {singlePost?.likes?.likeCount > 0 && (
             <>

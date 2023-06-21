@@ -167,13 +167,18 @@ export const Postcard = ({ data }) => {
                 </div>
                 <Link to={`/post/${_id}`} className="textdecoration-none">
                   <div className="postcard-content">{content}</div>
-                  <div>
-                    <img
-                      src={postImage}
-                      className="postcard-content-img"
-                      alt="postImage"
-                    />
-                  </div>
+                  {postImage.length > 0 &&
+                    postImage.map((img, id) => {
+                      return (
+                        <div key={id}>
+                          <img
+                            src={img}
+                            className="postcard-content-img"
+                            alt="postImage"
+                          />
+                        </div>
+                      );
+                    })}
                 </Link>
 
                 <hr />

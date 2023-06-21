@@ -9,6 +9,8 @@ export const CreatePost = () => {
   console.log(userImage);
   const user = getUser();
   const { postState } = useContext(DataContext);
+
+  const createPost = () => {};
   return (
     <>
       <div className="create-post-layout-container">
@@ -79,6 +81,7 @@ export const CreatePost = () => {
             </label>
 
             <button
+              onClick={createPost}
               className="create-post-post-btn"
               disabled={userInput.length === 0}
             >
