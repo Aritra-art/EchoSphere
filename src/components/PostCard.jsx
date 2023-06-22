@@ -247,7 +247,15 @@ export const Postcard = ({ data }) => {
                       }
                     }}
                   ></i>
-                  <i className="fas fa-share"></i>
+                  <i
+                    className="fas fa-share"
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        `https://echo-sphere.vercel.app/post/${_id}`
+                      );
+                      alert("Link Copied ! Start Sharing");
+                    }}
+                  ></i>
                 </div>
               </div>
             );
