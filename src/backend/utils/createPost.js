@@ -2,7 +2,7 @@ import { createPostService } from "../../services/createPostService";
 import { getUser } from "./getUser";
 import { uploadImage } from "./uploadImage";
 
-const getImages = async (userImage) => {
+export const getImages = async (userImage) => {
   try {
     let postImage = [];
     for (let image of userImage) {

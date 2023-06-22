@@ -15,12 +15,13 @@ import { followUser } from "../backend/utils/followUser";
 import { unFollowUser } from "../backend/utils/unFollowUser";
 
 import { DelModal } from "./DelModal";
+import { EditPost } from "./EditPost";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
   const [showEllipsisContent, setShowEllipsisContent] = useState({ id: false });
   const [showDelModal, setShowDelModal] = useState({ show: false, id: "" });
-
+  const [showEditModal, setShowEditModal] = useState({ show: false, id: "" });
   const token = getToken();
   const user = getUser();
 
@@ -34,6 +35,12 @@ export const Postcard = ({ data }) => {
     <>
       {showDelModal.show && (
         <DelModal setShowModal={setShowDelModal} postId={showDelModal?.id} />
+      )}
+      {showEditModal.show && (
+        <EditPost
+          editId={showEditModal.id}
+          setShowEditModal={setShowEditModal}
+        />
       )}
       {data?.length > 0 &&
         data.map(
@@ -101,7 +108,16 @@ export const Postcard = ({ data }) => {
                     <div className="post-ellipsis-layout">
                       {token && user?.username === username && (
                         <div className="post-ellipsis-container">
-                          <div className="post-ellipsis-container-pill">
+                          <div
+                            onClick={() => {
+                              setShowEditModal((showEditModal) => ({
+                                ...showEditModal,
+                                show: true,
+                                id: _id,
+                              }));
+                            }}
+                            className="post-ellipsis-container-pill"
+                          >
                             Edit
                           </div>
                           <div
