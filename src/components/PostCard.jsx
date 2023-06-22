@@ -187,11 +187,24 @@ export const Postcard = ({ data }) => {
                     postImage.map((img, id) => {
                       return (
                         <div key={id}>
-                          <img
-                            src={img}
-                            className="postcard-content-img"
-                            alt="postImage"
-                          />
+                          {img.split("/")[4] === "video" ? (
+                            <video
+                              controls
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                objectFit: "contain",
+                              }}
+                            >
+                              <source src={img} />
+                            </video>
+                          ) : (
+                            <img
+                              src={img}
+                              className="postcard-content-img"
+                              alt="postImage"
+                            />
+                          )}
                         </div>
                       );
                     })}

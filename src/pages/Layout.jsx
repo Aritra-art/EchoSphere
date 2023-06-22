@@ -8,7 +8,7 @@ export const Layout = ({ children }) => {
   return (
     <>
       <div className="layout-section">
-        <div style={{ flexBasis: "25%" }}>
+        <div style={{ flexBasis: "23%" }}>
           <RouteLayout />
         </div>
         <div
@@ -22,7 +22,7 @@ export const Layout = ({ children }) => {
         >
           {children}
         </div>
-        <div style={{ flexBasis: "25%", flexShrink: "1" }}>
+        <div style={{ flexBasis: "27%", flexShrink: "1" }}>
           <SuggestedUsers />
         </div>
       </div>

@@ -19,8 +19,11 @@
   padding: 0.5rem 0 0.5rem 0.1rem;
 }
 .create-post-btns {
-  flex-grow: 0.4;
-  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 0.5rem;
 }
 
 .create-post-content {
@@ -36,6 +39,12 @@
 .no-outline:focus {
   outline: none;
 }
+div[contentEditable="true"]:empty::before {
+  content: attr(placeholder);
+  color: rgba(0, 0, 0, 0.6);
+  margin-left: 0.1rem;
+  font-size: 1.1rem;
+}
 .create-post-content:focus {
   outline: none;
 }
@@ -47,10 +56,11 @@
 .create-post-image-input {
   display: none;
 }
-.fa-image {
+.fa-image,
+.fa-video {
   color: #ff3b30;
   font-size: 1.1rem;
-  margin: 0.8rem 0.5rem;
+  margin: 1rem 0.5rem;
   cursor: pointer;
 }
 .image-xmark {

@@ -19,7 +19,6 @@ export const EditPost = ({ editId, setShowEditModal }) => {
     },
     userImage: [],
   });
-  // console.log(editPost?.postImage());
   return (
     <div className="show-following-container-layout">
       <div className="modal-content">
