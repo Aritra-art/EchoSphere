@@ -38,11 +38,25 @@ export const EditPost = ({ editId, setShowEditModal }) => {
             editPost?.postImage()?.map((img) => {
               return (
                 <div key={img.id} style={{ position: "relative" }}>
-                  <img
-                    src={img.image}
-                    alt="postimg"
-                    className="user-input-image"
-                  />
+                  {img?.image?.split("/")[4] === "video" ? (
+                    <video
+                      controls
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        objectFit: "contain",
+                      }}
+                    >
+                      <source src={img.image} />
+                    </video>
+                  ) : (
+                    <img
+                      src={img.image}
+                      alt="postimg"
+                      className="user-input-image "
+                    />
+                  )}
+
                   <span
                     className="image-xmark"
                     onClick={() => {
@@ -65,13 +79,30 @@ export const EditPost = ({ editId, setShowEditModal }) => {
             })}
           {editPost?.userImage?.length > 0 &&
             editPost?.userImage?.map((img) => {
+              console.log(img?.image?.type.split("/")[0]);
               return (
                 <div style={{ position: "relative" }} key={img.id}>
-                  <img
-                    src={URL.createObjectURL(img.image)}
-                    alt="userimage"
-                    className="user-input-image"
-                  />
+                  {img?.image?.type.split("/")[0] === "image" && (
+                    <img
+                      src={URL.createObjectURL(img.image)}
+                      alt="userimage"
+                      className="user-input-image"
+                    />
+                  )}
+                  {img?.image?.type.split("/")[0] === "video" && (
+                    <video
+                      controls
+                      className="user-input-image"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        objectFit: "contain",
+                      }}
+                    >
+                      <source src={URL.createObjectURL(img.image)} />
+                    </video>
+                  )}
+
                   <span
                     className="image-xmark"
                     onClick={() =>
@@ -89,7 +120,7 @@ export const EditPost = ({ editId, setShowEditModal }) => {
               );
             })}
           <label>
-            <i className="fa-solid fa-image"></i>
+            {/* <i className="fa-solid fa-image"></i> */}
             <input
               type="file"
               accept="image/*"
@@ -100,7 +131,7 @@ export const EditPost = ({ editId, setShowEditModal }) => {
                     Number(editPost?.postImage()?.length) ===
                   2
                 ) {
-                  alert("Max 2 images can be uploaded");
+                  alert("Max 2 items can be uploaded");
                 } else {
                   setEditPost((editPost) => ({
                     ...editPost,
@@ -109,6 +140,35 @@ export const EditPost = ({ editId, setShowEditModal }) => {
                       { id: Math.random(), image: e.target.files[0] },
                     ],
                   }));
+                }
+              }}
+            />
+          </label>
+          <label>
+            {/* <i className="fa-solid fa-video"></i> */}
+            <input
+              type="file"
+              accept="video/*"
+              className="create-post-image-input"
+              onChange={(e) => {
+                if (
+                  Number(editPost?.userImage?.length) +
+                    Number(editPost?.postImage()?.length) ===
+                  2
+                ) {
+                  alert("max 2 items");
+                } else {
+                  if (e.target.files[0]?.size / 10240000 > 1) {
+                    alert("Video should not be more than 10mb");
+                  } else {
+                    setEditPost((editPost) => ({
+                      ...editPost,
+                      userImage: [
+                        ...editPost?.userImage,
+                        { id: Math.random(), image: e.target.files[0] },
+                      ],
+                    }));
+                  }
                 }
               }}
             />
