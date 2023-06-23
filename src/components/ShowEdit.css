@@ -40,3 +40,11 @@ textarea {
   cursor: pointer;
   margin-top: 1rem;
 }
+.fa-camera {
+  position: absolute;
+  color: #ff3b30;
+  bottom: 10%;
+  right: 30%;
+  cursor: pointer;
+  font-size: 1.5rem;
+}

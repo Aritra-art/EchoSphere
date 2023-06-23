@@ -18,6 +18,8 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
     bio: obj?.bio,
     website: obj?.website,
   });
+
+  console.log(typeof userInput?.profileAvatar);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInput((userInput) => ({ ...userInput, [name]: value }));
@@ -33,6 +35,30 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
           <span>{type}</span>
           <div>
             <form className="show-edit-form" onSubmit={updateUserHandler}>
+              <label>
+                <span style={{ position: "relative" }}>
+                  <img
+                    src={
+                      typeof userInput?.profileAvatar === "string"
+                        ? userInput?.profileAvatar
+                        : URL.createObjectURL(userInput?.profileAvatar)
+                    }
+                    className="single-user-avatar"
+                  />
+                  {/* <i className="fa-solid fa-camera"></i> */}
+                </span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="create-post-image-input"
+                  onChange={(e) => {
+                    setUserInput((userInput) => ({
+                      ...userInput,
+                      profileAvatar: e.target.files[0],
+                    }));
+                  }}
+                />
+              </label>
               <label className="editform-label">
                 First Name{" "}
                 <input
@@ -73,9 +99,9 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
               <button
                 className="update-btn"
                 type="submit"
-                onClick={(e) => {
-                  e.target.innerText = "Updating . . .";
-                }}
+                // onClick={(e) => {
+                //   e.target.innerText = "Updating . . .";
+                // }}
               >
                 Update
               </button>

@@ -72,11 +72,12 @@ export const RouteLayout = () => {
           <img
             className="user-avatar-img"
             alt="profile-avatar"
-            src={user?.profileAvatar}
+            src={
+              postState?.users?.find((u) => u._id === user._id)?.profileAvatar
+            }
           />
           <div className="flex-col">
             <span>
-              {/* {user?.firstName} {user?.lastName} */}
               {user &&
                 postState?.users?.find((u) => u._id === user._id)
                   ?.firstName}{" "}

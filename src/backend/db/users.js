@@ -13,7 +13,8 @@ export const users = [
     password: "aritrachowdhury123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    profileAvatar: "https://picsum.photos/id/1012/200/200",
+    profileAvatar:
+      "https://res.cloudinary.com/dazdakg1z/image/upload/v1687503763/echosphere/rtoo1m2dlhpgqlduyujp.gif",
     bio: "Passionate learner dedicated to exploring the intersections of art and technology for creative problem-solving. Embracing challenges with an open mind and a thirst for knowledge.",
     website: "https://aritraportfolio.netlify.app/",
   },

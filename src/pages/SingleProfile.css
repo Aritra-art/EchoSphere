@@ -3,7 +3,9 @@
 }
 .single-user-avatar {
   margin: 1rem auto;
-  width: 10rem;
+  object-fit: cover;
+  width: 12rem;
+  height: 12rem;
   display: block;
   border-radius: 50%;
   border: 2px solid #ff3b30;

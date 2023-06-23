@@ -10,6 +10,8 @@
   border-radius: 50%;
   border: 2px solid #ff3b30;
   width: 4rem;
+  height: 4rem;
+  object-fit: cover;
 }
 .postcard-header-layout {
   display: flex;

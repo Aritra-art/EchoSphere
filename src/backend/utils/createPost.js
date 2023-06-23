@@ -3,6 +3,7 @@ import { getUser } from "./getUser";
 import { uploadImage } from "./uploadImage";
 
 export const getImages = async (userImage) => {
+  console.log(userImage);
   try {
     let postImage = [];
     for (let image of userImage) {

@@ -16,8 +16,11 @@ export const SearchPeople = () => {
   const token = getToken();
   const searchedUsers =
     userInput.trim()?.length > 0 &&
-    postState?.users?.filter(({ firstName }) =>
-      firstName.toLowerCase().includes(userInput.trim().toLowerCase())
+    postState?.users?.filter(
+      ({ firstName, lastName, username }) =>
+        firstName.toLowerCase().includes(userInput.trim().toLowerCase()) ||
+        lastName.toLowerCase().includes(userInput.trim().toLowerCase()) ||
+        username.toLowerCase().includes(userInput.trim().toLowerCase())
     );
   return (
     <>

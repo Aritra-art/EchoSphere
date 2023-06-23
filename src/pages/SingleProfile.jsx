@@ -32,7 +32,7 @@ export const SingleProfile = () => {
     try {
       const response = await getAllPostsByUsernameService(username);
       if (response?.status === 200) {
-        console.log(response?.data?.posts);
+        // console.log(response?.data?.posts);
         setUserPosts(response?.data?.posts);
       }
     } catch (error) {
