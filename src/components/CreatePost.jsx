@@ -82,7 +82,7 @@ export const CreatePost = () => {
 
           <div className="create-post-btns">
             <label>
-              <i className="fa-solid fa-image"></i>
+              {/* <i className="fa-solid fa-image"></i> */}
               <input
                 type="file"
                 accept="image/*"
