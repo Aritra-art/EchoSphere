@@ -13,6 +13,7 @@ import { getPostDate } from "../backend/utils/getPostDate";
 import { Navbar } from "../components/Navbar";
 import { ShowFollowing } from "../components/ShowFollowing";
 import { PostCardShimmer } from "../components/PostCardShimmer";
+import Linkify from "react-linkify";
 
 export const SinglePost = () => {
   const [singlePost, setSinglePost] = useState({});
@@ -84,16 +85,31 @@ export const SinglePost = () => {
 
             <i className="fa-solid fa-ellipsis"></i>
           </div>
-          <div className="postcard-content">{singlePost?.content}</div>
+          <div className="postcard-content">
+            <Linkify>{singlePost?.content}</Linkify>
+          </div>
           {singlePost?.postImage.length > 0 &&
             singlePost?.postImage.map((img, id) => {
               return (
                 <div key={id}>
-                  <img
-                    src={img}
-                    className="postcard-content-img"
-                    alt="postImage"
-                  />
+                  {img.split("/")[4] === "video" ? (
+                    <video
+                      controls
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        objectFit: "contain",
+                      }}
+                    >
+                      <source src={img} />
+                    </video>
+                  ) : (
+                    <img
+                      src={img}
+                      className="postcard-content-img"
+                      alt="postImage"
+                    />
+                  )}
                 </div>
               );
             })}

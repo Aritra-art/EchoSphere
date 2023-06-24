@@ -24,6 +24,7 @@ export const EditPost = ({ editId, setShowEditModal }) => {
       <div className="modal-content">
         <div>
           <textarea
+            rows={5}
             name="content"
             value={editPost.content}
             onChange={(e) =>

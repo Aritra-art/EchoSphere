@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { getUser } from "../backend/utils/getUser";
 import { DataContext } from "../context/DataContext";
+import { avatarDb } from "../backend/utils/avatarDb";
 
 export const RouteLayout = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export const RouteLayout = () => {
     color: isActive && "#ff3b30",
     fontWeight: isActive && "bold",
   });
+  // console.log(postState?.users?.find((u) => u._id === user._id)?.profileAvatar);
   return (
     <div className="outer-route-layout-container">
       <div className="route-layout-container ">

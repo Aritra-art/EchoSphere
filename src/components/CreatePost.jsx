@@ -13,8 +13,6 @@ export const CreatePost = () => {
   const token = getToken();
   const { postState } = useContext(DataContext);
 
-  console.log(userImage);
-
   return (
     <>
       <div className="create-post-layout-container">

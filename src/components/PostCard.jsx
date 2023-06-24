@@ -13,9 +13,10 @@ import { Link } from "react-router-dom";
 import { isUserFollowed } from "../backend/utils/isUserFollowed";
 import { followUser } from "../backend/utils/followUser";
 import { unFollowUser } from "../backend/utils/unFollowUser";
-
+import Linkify from "react-linkify";
 import { DelModal } from "./DelModal";
 import { EditPost } from "./EditPost";
+import { componentDecorator } from "../backend/utils/componentDecorator";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
@@ -182,7 +183,11 @@ export const Postcard = ({ data }) => {
                   )}
                 </div>
                 <Link to={`/post/${_id}`} className="textdecoration-none">
-                  <div className="postcard-content">{content}</div>
+                  <div className="postcard-content">
+                    <Linkify componentDecorator={componentDecorator}>
+                      {content}
+                    </Linkify>
+                  </div>
                   {postImage.length > 0 &&
                     postImage.map((img, id) => {
                       return (

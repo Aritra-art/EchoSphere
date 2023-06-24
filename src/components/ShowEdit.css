@@ -39,6 +39,7 @@ textarea {
   border: none;
   cursor: pointer;
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 .fa-camera {
   position: absolute;

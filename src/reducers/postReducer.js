@@ -1,3 +1,5 @@
+import { avatarDb } from "../backend/utils/avatarDb";
+
 export const postReducer = (postState, { type, payload }) => {
   switch (type) {
     case "SET_ALL_POSTS":
@@ -5,7 +7,31 @@ export const postReducer = (postState, { type, payload }) => {
     case "SET_ALL_BOOKMARKS":
       return { ...postState, bookmarks: payload };
     case "SET_ALL_USERS":
-      return { ...postState, users: payload };
+      return {
+        ...postState,
+        users: payload.map((user) =>
+          user?.profileAvatar
+            ? user
+            : {
+                ...user,
+                profileAvatar:
+                  avatarDb[Math.floor(Math.random() * avatarDb?.length)],
+              }
+        ),
+      };
+    // case "SET_DEFAULT_AVATAR":
+    //   return {
+    //     ...postState,
+    //     users: postState?.users?.map((user) =>
+    //       user?.profileAvatar
+    //         ? user
+    //         : {
+    //             ...user,
+    //             profileAvatar:
+    //               avatarDb[Math.floor(Math.random() * avatarDb?.length)],
+    //           }
+    //     ),
+    //   };
     case "UPDATE_USER_PROFILE":
       return {
         ...postState,

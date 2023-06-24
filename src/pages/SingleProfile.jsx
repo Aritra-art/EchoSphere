@@ -83,7 +83,10 @@ export const SingleProfile = () => {
         <div className="single-user-container-layout">
           <img
             alt="user-avatar"
-            src={singleUser?.profileAvatar}
+            src={
+              postState?.users?.find((user) => user?._id === singleUser?._id)
+                ?.profileAvatar
+            }
             className="single-user-avatar"
           />
           <h2 className="center-text bold">
