@@ -14,9 +14,18 @@ import { Navbar } from "../components/Navbar";
 import { ShowFollowing } from "../components/ShowFollowing";
 import { PostCardShimmer } from "../components/PostCardShimmer";
 import Linkify from "react-linkify";
+import { componentDecorator } from "../backend/utils/componentDecorator";
+import { EditPost } from "../components/EditPost";
+import { DelModal } from "../components/DelModal";
+import { isUserFollowed } from "../backend/utils/isUserFollowed";
+import { unFollowUser } from "../backend/utils/unFollowUser";
+import { followUser } from "../backend/utils/followUser";
 
 export const SinglePost = () => {
   const [singlePost, setSinglePost] = useState({});
+  const [showEllipsisContent, setShowEllipsisContent] = useState({ id: false });
+  const [showEditModal, setShowEditModal] = useState({ show: false, id: "" });
+  const [showDelModal, setShowDelModal] = useState({ show: false, id: "" });
   const [showModal, setShowModal] = useState({
     show: false,
     type: "",
@@ -36,9 +45,14 @@ export const SinglePost = () => {
   useEffect(() => {
     getSinglePost();
   }, [postId, postState?.posts]);
+  useEffect(() => {
+    document.addEventListener("click", () => {
+      setShowEllipsisContent(() => ({ id: false }));
+    });
+  }, []);
   const token = getToken();
   const user = getUser();
-  console.log(singlePost?.postImage);
+  console.log(singlePost);
 
   return (
     <>
@@ -49,6 +63,15 @@ export const SinglePost = () => {
           setShowModal={setShowModal}
           showModal={showModal}
         />
+      )}
+      {showEditModal.show && (
+        <EditPost
+          editId={showEditModal.id}
+          setShowEditModal={setShowEditModal}
+        />
+      )}
+      {showDelModal.show && (
+        <DelModal setShowModal={setShowDelModal} postId={showDelModal?.id} />
       )}
 
       <div style={{ marginBottom: "4rem" }}></div>
@@ -82,11 +105,96 @@ export const SinglePost = () => {
                 <p>@{singlePost?.username}</p>
               </span>
             </div>
-
-            <i className="fa-solid fa-ellipsis"></i>
+            {!showEllipsisContent[singlePost?._id] && token && (
+              <i
+                className="fa-solid fa-ellipsis"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowEllipsisContent(() => ({ [singlePost?._id]: true }));
+                }}
+              ></i>
+            )}
+            {showEllipsisContent[singlePost?._id] && (
+              <div className="post-ellipsis-layout">
+                {token && user.username === singlePost?.username && (
+                  <div className="post-ellipsis-container">
+                    <div
+                      onClick={() => {
+                        setShowEditModal((showEditModal) => ({
+                          ...showEditModal,
+                          show: true,
+                          id: singlePost?._id,
+                        }));
+                      }}
+                      className="post-ellipsis-container-pill"
+                    >
+                      Edit
+                    </div>
+                    <div
+                      className="post-ellipsis-container-pill"
+                      onClick={() => {
+                        setShowDelModal((showDelModal) => ({
+                          ...showDelModal,
+                          show: true,
+                          id: singlePost?._id,
+                        }));
+                      }}
+                    >
+                      Delete
+                    </div>
+                  </div>
+                )}
+                {token && user?.username !== singlePost?.username && (
+                  <div className="post-ellipsis-container">
+                    <div
+                      className="post-ellipsis-container-pill"
+                      onClick={() => {
+                        if (
+                          isUserFollowed(
+                            postState?.users,
+                            postState?.users?.find(
+                              (user) => user?.username === singlePost?.username
+                            )._id
+                          )
+                        ) {
+                          unFollowUser(
+                            token,
+                            postState?.users?.find(
+                              (user) => user?.username === singlePost?.username
+                            )._id,
+                            dispatchPost
+                          );
+                          console.log("unfollow");
+                        } else {
+                          followUser(
+                            postState?.users?.find(
+                              (user) => user?.username === singlePost?.username
+                            )._id,
+                            token,
+                            dispatchPost
+                          );
+                          console.log("follow");
+                        }
+                      }}
+                    >
+                      {isUserFollowed(
+                        postState?.users,
+                        postState?.users?.find(
+                          (user) => user?.username === singlePost?.username
+                        )._id
+                      )
+                        ? "Unfollow"
+                        : "Follow"}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           <div className="postcard-content">
-            <Linkify>{singlePost?.content}</Linkify>
+            <Linkify componentDecorator={componentDecorator}>
+              {singlePost?.content}
+            </Linkify>
           </div>
           {singlePost?.postImage.length > 0 &&
             singlePost?.postImage.map((img, id) => {
@@ -189,7 +297,15 @@ export const SinglePost = () => {
                 }
               }}
             ></i>
-            <i className="fas fa-share"></i>
+            <i
+              className="fas fa-share"
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `https://echo-sphere.vercel.app/post/${singlePost?._id}`
+                );
+                alert("Link Copied ! Start Sharing");
+              }}
+            ></i>
           </div>
         </div>
       )}

@@ -18,10 +18,7 @@ export const posts = [
     },
     fullname: "Aritra Chowdhury",
     username: "aritrachowdhury",
-    postImage: [
-      "https://source.unsplash.com/random/900x700/?fruit",
-      "https://res.cloudinary.com/dazdakg1z/video/upload/v1687453414/echosphere/u0kmuvxzxilkcovmrufz.mp4",
-    ],
+    postImage: ["https://source.unsplash.com/random/900x700/?fruit"],
     createdAt: "2023-06-01",
     updatedAt: formatDate(),
   },

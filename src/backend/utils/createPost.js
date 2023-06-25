@@ -25,7 +25,7 @@ export const createPost = async (userInput, userImage, dispatchPost) => {
       content: userInput,
       fullName: `${user?.firstName} ${user?.lastName}`,
       postImage: postImage,
-      createdAt: new Date().toISOString().slice(0, 10),
+      createdAt: new Date(),
     });
     if (response?.status === 201) {
       dispatchPost({
