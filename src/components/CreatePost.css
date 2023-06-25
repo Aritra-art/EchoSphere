@@ -74,3 +74,6 @@ div[contentEditable="true"]:empty::before {
   color: #ff3b30;
   font-size: 1.1rem;
 }
+.not-allowed:hover {
+  cursor: not-allowed;
+}

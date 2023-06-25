@@ -12,6 +12,7 @@ export const CreatePost = () => {
   const user = getUser();
   const token = getToken();
   const { postState } = useContext(DataContext);
+  console.log(userImage, userInput);
 
   return (
     <>
@@ -129,11 +130,14 @@ export const CreatePost = () => {
                 createPost(userInput, userImage, dispatchPost);
                 document.querySelector(".no-outline").innerText = "";
                 setUserImage(() => []);
+                setUserInput(() => "");
               }}
-              className="create-post-post-btn"
-              disabled={
+              className={
                 userImage.length === 0 && userInput?.trim()?.length === 0
+                  ? "update-btn not-allowed"
+                  : "update-btn"
               }
+              disabled={userImage.length === 0 && userInput.trim() === ""}
             >
               post
             </button>
