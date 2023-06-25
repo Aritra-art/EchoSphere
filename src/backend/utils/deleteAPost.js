@@ -4,7 +4,9 @@ export const deleteAPost = async (
   postId,
   token,
   dispatchPost,
-  setShowModal
+  setShowModal,
+  fromSinglePostPage,
+  navigate
 ) => {
   try {
     const response = await deleteAPostService(postId, token);
@@ -18,6 +20,7 @@ export const deleteAPost = async (
         ...showDelModal,
         show: false,
       }));
+      fromSinglePostPage && navigate("/feed");
     }
   } catch (error) {
     console.error(error);

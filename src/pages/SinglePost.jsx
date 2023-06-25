@@ -71,7 +71,11 @@ export const SinglePost = () => {
         />
       )}
       {showDelModal.show && (
-        <DelModal setShowModal={setShowDelModal} postId={showDelModal?.id} />
+        <DelModal
+          setShowModal={setShowDelModal}
+          postId={showDelModal?.id}
+          fromSinglePostPage
+        />
       )}
 
       <div style={{ marginBottom: "4rem" }}></div>

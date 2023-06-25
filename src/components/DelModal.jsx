@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { DataContext } from "../context/DataContext";
 import { getToken } from "../backend/utils/getToken";
 import { deleteAPost } from "../backend/utils/deleteAPost";
+import { useNavigate } from "react-router-dom";
 
-export const DelModal = ({ setShowModal, postId }) => {
+export const DelModal = ({ setShowModal, postId, fromSinglePostPage }) => {
   const { postState, dispatchPost } = useContext(DataContext);
   const token = getToken();
+  const navigate = useNavigate();
   return (
     <div className="show-following-container-layout">
       <div className="modal-content">
@@ -26,7 +28,14 @@ export const DelModal = ({ setShowModal, postId }) => {
                 color: "#ff3b30",
               }}
               onClick={(e) => {
-                deleteAPost(postId, token, dispatchPost, setShowModal);
+                deleteAPost(
+                  postId,
+                  token,
+                  dispatchPost,
+                  setShowModal,
+                  fromSinglePostPage,
+                  navigate
+                );
                 e.target.innerText = "Deleting . . .";
               }}
             >
