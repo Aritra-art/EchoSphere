@@ -33,9 +33,17 @@ export const SinglePost = () => {
   const { postState, dispatchPost } = useContext(DataContext);
   const { postId } = useParams();
   const getSinglePost = async () => {
+    dispatchPost({
+      type: "SET_LOADING_TRUE",
+      payload: true,
+    });
     try {
       const response = await getSinglePostService(postId);
       if (response?.status === 200) {
+        dispatchPost({
+          type: "SET_LOADING_FALSE",
+          payload: false,
+        });
         setSinglePost(response?.data?.post);
       }
     } catch (error) {
@@ -57,6 +65,9 @@ export const SinglePost = () => {
   return (
     <>
       <Navbar from="Post" />
+      <div style={{ marginBottom: "4rem" }}></div>
+      {postState?.loading && <PostCardShimmer />}
+
       {showModal.show && (
         <ShowFollowing
           arr={singlePost?.likes?.likedBy}

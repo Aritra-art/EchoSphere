@@ -22,7 +22,7 @@
   height: 3.5rem;
   font-size: 1.4rem;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .home-container-login-link {
   margin-top: 0.8rem;

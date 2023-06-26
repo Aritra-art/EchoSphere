@@ -4,7 +4,7 @@
   margin: 1rem auto;
   padding: 1rem 0.8rem;
   border-radius: 0.6rem;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .user-avatar-img {
   border-radius: 50%;

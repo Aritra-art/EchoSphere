@@ -8,3 +8,16 @@
 .edit-post-edit-image {
   width: 100%;
 }
+
+.update-btn-secondary {
+  align-self: center;
+  padding: 0.6rem;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+}

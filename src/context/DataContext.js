@@ -60,14 +60,6 @@ export const DataContextProvider = ({ children }) => {
     }
   };
 
-  const setDefaultAvatar = () => {
-    dispatchPost({
-      type: "SET_DEFAULT_AVATAR",
-      payload: "",
-    });
-  };
-  console.log(postState?.users);
-
   useEffect(() => {
     getAllPosts();
     getAllUsers();

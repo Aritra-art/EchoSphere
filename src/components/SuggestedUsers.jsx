@@ -43,7 +43,7 @@ export const SuggestedUsers = () => {
       <div className="suggested-users-layout">
         <h3 className="margin-bottom">Who to Follow ?</h3>
         <hr />
-        {postState?.loading && <UserCardShimmer />}
+        {/* {postState?.loading && <UserCardShimmer />} */}
         <ul className="suggested-users">
           {suggestedUsers().length > 0 &&
             suggestedUsers()?.map(

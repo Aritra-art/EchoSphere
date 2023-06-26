@@ -16,6 +16,11 @@ export const Bookmark = () => {
 
       <div style={{ marginTop: "4rem" }}>
         {postState?.loading && <PostCardShimmer />}
+        {postState?.bookmarks?.length === 0 && (
+          <h2 style={{ textAlign: "center", color: "#ff3b30" }}>
+            No Post added to Bookmarks
+          </h2>
+        )}
         {postState?.bookmarks?.length > 0 && <Postcard data={bookmarkArray} />}
       </div>
     </>

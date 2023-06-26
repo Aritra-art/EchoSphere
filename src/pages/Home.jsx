@@ -37,10 +37,10 @@ export const Home = () => {
           <button
             className="login-primary-btn home-container-btn"
             onClick={() => {
-              navigate("/signup");
+              navigate("/explore");
             }}
           >
-            Join Now
+            See Cool Stuffs
           </button>
           <p
             className="home-container-login-link center-text orange-color"

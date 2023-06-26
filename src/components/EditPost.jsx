@@ -175,6 +175,7 @@ export const EditPost = ({ editId, setShowEditModal }) => {
             />
           </label>
           <button
+            className="update-btn"
             onClick={() => {
               editPostUtil(editId, editPost, dispatchPost);
               setShowEditModal((showEditModal) => ({
@@ -186,6 +187,7 @@ export const EditPost = ({ editId, setShowEditModal }) => {
             Save
           </button>
           <button
+            className="update-btn-secondary"
             onClick={() => {
               setShowEditModal((showEditModal) => ({
                 ...showEditModal,

@@ -1,6 +1,6 @@
 .filter-container-layout {
   width: 24rem;
-  margin: 0.5rem auto 0 auto;
+  margin: 1.5rem auto 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
