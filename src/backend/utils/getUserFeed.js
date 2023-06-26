@@ -1,3 +1,4 @@
+import { getPostDate } from "./getPostDate";
 import { getUser } from "./getUser";
 
 export const getUserFeed = (postState) => {
@@ -16,5 +17,18 @@ export const getUserFeed = (postState) => {
       ({ username }) => username === loggedInUser?.username
     ),
   ];
+  if (postState?.sortBy === "latest") {
+    userFeed = userFeed.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+  }
+  if (postState?.sortBy === "oldest") {
+    userFeed = userFeed.sort(
+      (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+    );
+  }
+  if (postState?.sortBy === "trending") {
+    userFeed = userFeed.sort((a, b) => b.likes.likeCount - a.likes.likeCount);
+  }
   return userFeed;
 };

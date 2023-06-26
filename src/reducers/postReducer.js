@@ -6,6 +6,8 @@ export const postReducer = (postState, { type, payload }) => {
       return { ...postState, posts: payload };
     case "SET_ALL_BOOKMARKS":
       return { ...postState, bookmarks: payload };
+    case "SET_SORT_BY":
+      return { ...postState, sortBy: payload };
     case "SET_ALL_USERS":
       return {
         ...postState,
@@ -19,19 +21,6 @@ export const postReducer = (postState, { type, payload }) => {
               }
         ),
       };
-    // case "SET_DEFAULT_AVATAR":
-    //   return {
-    //     ...postState,
-    //     users: postState?.users?.map((user) =>
-    //       user?.profileAvatar
-    //         ? user
-    //         : {
-    //             ...user,
-    //             profileAvatar:
-    //               avatarDb[Math.floor(Math.random() * avatarDb?.length)],
-    //           }
-    //     ),
-    //   };
     case "UPDATE_USER_PROFILE":
       return {
         ...postState,

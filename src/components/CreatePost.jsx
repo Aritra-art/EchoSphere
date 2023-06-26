@@ -12,7 +12,6 @@ export const CreatePost = () => {
   const user = getUser();
   const token = getToken();
   const { postState } = useContext(DataContext);
-  console.log(userImage, userInput);
 
   return (
     <>

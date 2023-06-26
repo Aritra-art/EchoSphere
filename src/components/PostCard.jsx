@@ -217,22 +217,28 @@ export const Postcard = ({ data }) => {
 
                 <hr />
                 <div className="card-action-buttons">
-                  <i
-                    className={`${
-                      isPostLiked(likes, user) ? "fa solid" : "fa-regular"
-                    } fa-heart`}
-                    onClick={() => {
-                      if (!token) {
-                        alert("please login to continue");
-                      } else {
-                        if (!isPostLiked(likes, user)) {
-                          postLikeHandler(token, _id, dispatchPost);
+                  <div>
+                    <i
+                      className={`${
+                        isPostLiked(likes, user) ? "fa solid" : "fa-regular"
+                      } fa-heart`}
+                      onClick={() => {
+                        if (!token) {
+                          alert("please login to continue");
                         } else {
-                          postDislikeHandler(token, _id, dispatchPost);
+                          if (!isPostLiked(likes, user)) {
+                            postLikeHandler(token, _id, dispatchPost);
+                          } else {
+                            postDislikeHandler(token, _id, dispatchPost);
+                          }
                         }
-                      }
-                    }}
-                  ></i>
+                      }}
+                    ></i>
+                    <span style={{ marginLeft: "0.5rem" }}>
+                      {likes?.likeCount}
+                    </span>
+                  </div>
+
                   <i className="fa-regular fa-comment"></i>
                   <i
                     className={`${

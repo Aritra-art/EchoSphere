@@ -14,6 +14,7 @@ export const DataContextProvider = ({ children }) => {
     posts: [],
     bookmarks: [],
     users: [],
+    sortBy: "latest",
     loading: false,
   });
   const { isLoggedIn } = useContext(AuthContext);

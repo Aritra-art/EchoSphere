@@ -5,6 +5,7 @@ import { Postcard } from "../components/PostCard";
 import { PostCardShimmer } from "../components/PostCardShimmer";
 import { Navbar } from "../components/Navbar";
 import { CreatePost } from "../components/CreatePost";
+import { Filters } from "../components/Filters";
 
 export const Feed = () => {
   const { postState } = useContext(DataContext);
@@ -16,6 +17,7 @@ export const Feed = () => {
       <div style={{ marginTop: "4rem" }}>
         {postState?.loading && <PostCardShimmer />}
         {!postState?.loding && <CreatePost />}
+        {!postState?.loading && <Filters />}
         {userFeed?.length > 0 && <Postcard data={userFeed} />}
       </div>
     </>

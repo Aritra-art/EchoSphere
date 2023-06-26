@@ -273,11 +273,7 @@ export const SinglePost = () => {
                   }
                 }
               }}
-            >
-              <span className="margin-left">
-                {singlePost?.likes?.likeCount}
-              </span>
-            </i>
+            ></i>
             <i className="fa-regular fa-comment"></i>
             <i
               className={`${
