@@ -16,7 +16,12 @@ export const getImages = async (userImage) => {
   }
 };
 
-export const createPost = async (userInput, userImage, dispatchPost) => {
+export const createPost = async (
+  userInput,
+  userImage,
+  dispatchPost,
+  setCreatePost
+) => {
   try {
     alert("we will notify you, once your post is uploaded");
     const user = getUser();
@@ -32,6 +37,7 @@ export const createPost = async (userInput, userImage, dispatchPost) => {
         type: "SET_ALL_POSTS",
         payload: response?.data?.posts,
       });
+      setCreatePost(() => false);
       alert("post uploaded successfully");
     }
   } catch (error) {

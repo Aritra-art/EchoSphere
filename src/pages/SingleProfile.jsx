@@ -13,6 +13,7 @@ import { followUser } from "../backend/utils/followUser";
 import { getToken } from "../backend/utils/getToken";
 import { ShowFollowing } from "../components/ShowFollowing";
 import { ShowEdit } from "../components/ShowEdit";
+import { BackgroundModal } from "../components/BackgroundModal";
 
 export const SingleProfile = () => {
   const { username } = useParams();
@@ -25,6 +26,7 @@ export const SingleProfile = () => {
     show: false,
     type: "",
   });
+  const [showBackgroundModal, setShowBackgroundModal] = useState(false);
   const [editProfile, setEditProfile] = useState({ show: false, type: "" });
   const { postState, dispatchPost } = useContext(DataContext);
   const navigate = useNavigate();
@@ -32,7 +34,6 @@ export const SingleProfile = () => {
     try {
       const response = await getAllPostsByUsernameService(username);
       if (response?.status === 200) {
-        // console.log(response?.data?.posts);
         setUserPosts(response?.data?.posts);
       }
     } catch (error) {
@@ -53,14 +54,38 @@ export const SingleProfile = () => {
     getSingleUser();
     getPostsByUsername();
   }, [username, postState?.users, postState?.posts]);
+
+  const getUpdatedArr = (following, follower) => {
+    let newFollowingArr = [];
+    let newFollowerArr = [];
+    for (let user of following) {
+      newFollowingArr = [
+        ...newFollowingArr,
+        postState?.users?.find((u) => u?._id === user?._id) &&
+          postState?.users?.find((u) => u?._id === user?._id),
+      ];
+    }
+    for (let user of follower) {
+      newFollowerArr = [
+        ...newFollowerArr,
+        postState?.users?.find((u) => u?._id === user?._id) &&
+          postState?.users?.find((u) => u?._id === user?._id),
+      ];
+    }
+    return { following: newFollowingArr, follower: newFollowerArr };
+  };
+
+  console.log(singleUser);
   return (
     <>
       {showModal.show && (
         <ShowFollowing
           arr={
             showModal?.type === "FOLLOWING"
-              ? singleUser?.following
-              : singleUser?.followers
+              ? getUpdatedArr(singleUser?.following, singleUser?.followers)
+                  ?.following
+              : getUpdatedArr(singleUser?.following, singleUser?.followers)
+                  ?.follower
           }
           setShowModal={setShowModal}
           showModal={showModal}
@@ -73,7 +98,16 @@ export const SingleProfile = () => {
           setEditProfile={setEditProfile}
         />
       )}
-      <div style={{ marginBottom: "4rem" }}>
+      {showBackgroundModal && (
+        <BackgroundModal
+          setShowBackgroundModal={setShowBackgroundModal}
+          img={
+            postState?.users?.find((u) => u?._id === singleUser?._id)
+              ?.background
+          }
+        />
+      )}
+      <div style={{ marginBottom: "3rem" }}>
         <Navbar
           from={`${singleUser?.firstName ?? ""} ${singleUser?.lastName ?? ""}`}
         />
@@ -81,15 +115,45 @@ export const SingleProfile = () => {
 
       {Object.keys(singleUser)?.length > 0 && (
         <div className="single-user-container-layout">
-          <img
-            alt="user-avatar"
-            src={
-              postState?.users?.find((user) => user?._id === singleUser?._id)
-                ?.profileAvatar
-            }
-            className="single-user-avatar"
-          />
-          <h2 className="center-text bold">
+          <div className="banner-layout">
+            <img
+              className="banner-layout"
+              style={{ width: "100%", height: "25rem", objectFit: "cover" }}
+              alt="cover-photo"
+              src={
+                postState?.users?.find((u) => u?._id === singleUser?._id)
+                  ?.background
+              }
+            />
+            <div
+              onClick={() => {
+                setShowBackgroundModal(() => true);
+              }}
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                color: "#ff3b30",
+                cursor: "pointer",
+                fontSize: "1.2rem",
+              }}
+            >
+              <i className="fa-solid fa-pencil"></i>
+            </div>
+
+            <div style={{ position: "absolute", bottom: "-4.5rem" }}>
+              <img
+                alt="user-avatar"
+                src={
+                  postState?.users?.find(
+                    (user) => user?._id === singleUser?._id
+                  )?.profileAvatar
+                }
+                className="single-user-avatar"
+              />
+            </div>
+          </div>
+          <h2 className="center-text bold" style={{ marginTop: "4rem" }}>
             {singleUser?.firstName} {singleUser?.lastName}
           </h2>
           <h3 className="center-text gray-color">@{singleUser?.username}</h3>
@@ -127,6 +191,7 @@ export const SingleProfile = () => {
                 : "Follow"}
             </div>
           )}
+
           <p className="center-text single-user-profile-bio">
             {singleUser?.bio}
           </p>
@@ -144,7 +209,6 @@ export const SingleProfile = () => {
               {singleUser?.website}
             </a>
           </p>
-
           <div className="single-user-follow-layout">
             <p
               className="flex-col "

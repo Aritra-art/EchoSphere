@@ -16,6 +16,8 @@ export const postReducer = (postState, { type, payload }) => {
             ? user
             : {
                 ...user,
+                background:
+                  "https://res.cloudinary.com/dazdakg1z/image/upload/v1684863383/samples/animals/three-dogs.jpg",
                 profileAvatar:
                   avatarDb[Math.floor(Math.random() * avatarDb?.length)],
               }

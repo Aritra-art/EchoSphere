@@ -5,14 +5,6 @@ import { DataContext } from "../context/DataContext";
 export const Filters = () => {
   const { postState, dispatchPost } = useContext(DataContext);
   const [showFilters, setShowFilters] = useState(false);
-  console.log(showFilters);
-
-  //   useEffect(() => {
-  //     console.log("check");
-  //     document.addEventListener("click", () => {
-  //       setShowFilters(() => false);
-  //     });
-  //   }, []);
 
   return (
     <>
@@ -25,7 +17,15 @@ export const Filters = () => {
             <i
               className="fa-solid fa-filter"
               onClick={() => {
-                setShowFilters(() => true);
+                setShowFilters((showFilters) => !showFilters);
+              }}
+            ></i>
+          )}
+          {showFilters && (
+            <i
+              className="fa-solid fa-x fa-filter"
+              onClick={() => {
+                setShowFilters((showFilters) => !showFilters);
               }}
             ></i>
           )}
@@ -40,6 +40,7 @@ export const Filters = () => {
                     type: "SET_SORT_BY",
                     payload: "trending",
                   });
+                  setShowFilters((showFilters) => !showFilters);
                 }}
               >
                 <i className="fa-solid fa-arrow-trend-up"></i>Trending
@@ -53,6 +54,7 @@ export const Filters = () => {
                     type: "SET_SORT_BY",
                     payload: "latest",
                   });
+                  setShowFilters((showFilters) => !showFilters);
                 }}
               >
                 <i className="fa-solid fa-caret-up"></i>Latest
@@ -66,6 +68,7 @@ export const Filters = () => {
                     type: "SET_SORT_BY",
                     payload: "oldest",
                   });
+                  setShowFilters((showFilters) => !showFilters);
                 }}
               >
                 <i className="fa-solid fa-caret-down"></i>

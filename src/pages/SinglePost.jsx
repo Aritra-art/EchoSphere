@@ -52,6 +52,7 @@ export const SinglePost = () => {
   };
   useEffect(() => {
     getSinglePost();
+    // eslint-disable-next-line
   }, [postId, postState?.posts]);
   useEffect(() => {
     document.addEventListener("click", () => {

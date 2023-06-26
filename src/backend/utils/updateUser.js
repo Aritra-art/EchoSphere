@@ -15,6 +15,8 @@ export const updateUser = async (updateUser, dispatchPost, setEditProfile) => {
         : profileAvatar;
     const updatedUser = {
       ...updateUser,
+      background:
+        "https://res.cloudinary.com/dazdakg1z/image/upload/v1684863383/samples/animals/three-dogs.jpg",
       profileAvatar:
         typeof profileAvatar === "string" ? profileAvatar : profileAvatar[0],
     };

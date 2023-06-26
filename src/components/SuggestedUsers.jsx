@@ -1,14 +1,14 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import "./SuggestedUsers.css";
 import { DataContext } from "../context/DataContext";
 import { getUser } from "../backend/utils/getUser";
 import { SearchPeople } from "./SearchPeople";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getToken } from "../backend/utils/getToken";
 import { isUserFollowed } from "../backend/utils/isUserFollowed";
 import { followUser } from "../backend/utils/followUser";
 import { unFollowUser } from "../backend/utils/unFollowUser";
-import { UserCardShimmer } from "./UserCardShimmer";
+// import { UserCardShimmer } from "./UserCardShimmer";
 
 export const SuggestedUsers = () => {
   const { postState, dispatchPost } = useContext(DataContext);

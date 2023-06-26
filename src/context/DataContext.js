@@ -18,15 +18,20 @@ export const DataContextProvider = ({ children }) => {
     loading: false,
   });
   const { isLoggedIn } = useContext(AuthContext);
+
   const getAllPosts = async () => {
     dispatchPost({ type: "SET_LOADING_TRUE", payload: true });
-    const response = await getAllPostsService();
-    if (response?.status === 200) {
-      dispatchPost({
-        type: "SET_ALL_POSTS",
-        payload: response?.data?.posts,
-      });
-      dispatchPost({ type: "SET_LOADING_FALSE", payload: false });
+    try {
+      const response = await getAllPostsService();
+      if (response?.status === 200) {
+        dispatchPost({
+          type: "SET_ALL_POSTS",
+          payload: response?.data?.posts,
+        });
+        dispatchPost({ type: "SET_LOADING_FALSE", payload: false });
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
   const getAllUsers = async () => {

@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { getUser } from "../backend/utils/getUser";
 import "./CreatePost.css";
 import { DataContext } from "../context/DataContext";
 import { getToken } from "../backend/utils/getToken";
 import { createPost } from "../backend/utils/createPost";
 
-export const CreatePost = () => {
+export const CreatePost = ({ setCreatePost }) => {
   const [userInput, setUserInput] = useState("");
   const [userImage, setUserImage] = useState([]);
   const { dispatchPost } = useContext(DataContext);
@@ -126,7 +126,7 @@ export const CreatePost = () => {
 
             <button
               onClick={() => {
-                createPost(userInput, userImage, dispatchPost);
+                createPost(userInput, userImage, dispatchPost, setCreatePost);
                 document.querySelector(".no-outline").innerText = "";
                 setUserImage(() => []);
                 setUserInput(() => "");
