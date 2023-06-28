@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { deleteAPostService } from "../../services/deleteAPostService";
 
 export const deleteAPost = async (
@@ -20,6 +21,7 @@ export const deleteAPost = async (
         ...showDelModal,
         show: false,
       }));
+      toast.success("Deleted");
       fromSinglePostPage && navigate("/feed");
     }
   } catch (error) {

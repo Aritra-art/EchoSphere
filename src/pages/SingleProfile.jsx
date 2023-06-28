@@ -74,8 +74,6 @@ export const SingleProfile = () => {
     }
     return { following: newFollowingArr, follower: newFollowerArr };
   };
-
-  console.log(singleUser);
   return (
     <>
       {showModal.show && (
@@ -105,6 +103,7 @@ export const SingleProfile = () => {
             postState?.users?.find((u) => u?._id === singleUser?._id)
               ?.background
           }
+          userId={singleUser?._id}
         />
       )}
       <div style={{ marginBottom: "3rem" }}>
@@ -125,21 +124,23 @@ export const SingleProfile = () => {
                   ?.background
               }
             />
-            <div
-              onClick={() => {
-                setShowBackgroundModal(() => true);
-              }}
-              style={{
-                position: "absolute",
-                top: "10px",
-                right: "10px",
-                color: "#ff3b30",
-                cursor: "pointer",
-                fontSize: "1.2rem",
-              }}
-            >
-              <i className="fa-solid fa-pencil"></i>
-            </div>
+            {user?._id === singleUser?._id && (
+              <div
+                onClick={() => {
+                  setShowBackgroundModal(() => true);
+                }}
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  color: "#ff3b30",
+                  cursor: "pointer",
+                  fontSize: "1.2rem",
+                }}
+              >
+                <i className="fa-solid fa-pencil"></i>
+              </div>
+            )}
 
             <div style={{ position: "absolute", bottom: "-4.5rem" }}>
               <img

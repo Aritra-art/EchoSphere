@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { unFollowUserService } from "../../services/unFollowUserService";
 
 export const unFollowUser = async (encodedToken, userId, dispatchPost) => {
@@ -13,6 +14,7 @@ export const unFollowUser = async (encodedToken, userId, dispatchPost) => {
         type: "UPDATE_USER_UNFOLLOWERS",
         payload: [response?.data?.followUser, response?.data?.user],
       });
+      toast.success("Unfollowed");
     }
   } catch (error) {
     console.error(error);

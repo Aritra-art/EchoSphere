@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 export const postDislikeHandler = async (
   encodedToken,
@@ -20,6 +21,7 @@ export const postDislikeHandler = async (
         type: "SET_ALL_POSTS",
         payload: response?.data?.posts,
       });
+      toast.success("Disliked");
     }
   } catch (error) {
     console.error(error);

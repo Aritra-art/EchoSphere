@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { createPostService } from "../../services/createPostService";
 import { getUser } from "./getUser";
 import { uploadImage } from "./uploadImage";
@@ -23,7 +24,8 @@ export const createPost = async (
   setCreatePost
 ) => {
   try {
-    alert("we will notify you, once your post is uploaded");
+    userImage?.length > 0 &&
+      toast.success("We will notify you, once your post is Uploaded");
     const user = getUser();
     const postImage = userImage.length > 0 ? await getImages(userImage) : [];
     const response = await createPostService({
@@ -37,8 +39,8 @@ export const createPost = async (
         type: "SET_ALL_POSTS",
         payload: response?.data?.posts,
       });
+      toast.success("Post uploaded Successfully");
       setCreatePost(() => false);
-      alert("post uploaded successfully");
     }
   } catch (error) {
     console.error(error);

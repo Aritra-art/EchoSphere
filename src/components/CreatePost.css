@@ -78,3 +78,13 @@ div[contentEditable="true"]:empty::before {
 .not-allowed:hover {
   cursor: not-allowed;
 }
+
+.gif-icon {
+  font-size: 0.8rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  color: #ff3b30;
+  font-weight: bold;
+  padding: 0.1rem;
+  border: 1px solid #ff3b30;
+}

@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { followUserService } from "../../services/followUserService";
 
 export const followUser = async (userId, token, dispatchPost) => {
@@ -12,6 +13,7 @@ export const followUser = async (userId, token, dispatchPost) => {
         type: "UPDATE_USER_FOLLOWERS",
         payload: [response?.data?.followUser, response?.data?.user],
       });
+      toast.success("Followed");
     }
   } catch (error) {
     console.error(error);

@@ -11,11 +11,20 @@ import { Bookmark } from "./pages/Bookmark";
 import { SinglePost } from "./pages/SinglePost";
 import { getToken } from "./backend/utils/getToken";
 import { SingleProfile } from "./pages/SingleProfile";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const token = getToken();
   return (
     <div className="App">
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+        containerStyle={{
+          bottom: "3rem",
+          right: "3rem",
+        }}
+      />
       <Routes>
         <Route
           path="/"

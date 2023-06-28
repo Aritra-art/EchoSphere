@@ -17,6 +17,7 @@ import Linkify from "react-linkify";
 import { DelModal } from "./DelModal";
 import { EditPost } from "./EditPost";
 import { componentDecorator } from "../backend/utils/componentDecorator";
+import { toast } from "react-hot-toast";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
@@ -155,7 +156,6 @@ export const Postcard = ({ data }) => {
                                   )._id,
                                   dispatchPost
                                 );
-                                console.log("unfollow");
                               } else {
                                 followUser(
                                   postState?.users?.find(
@@ -164,7 +164,6 @@ export const Postcard = ({ data }) => {
                                   token,
                                   dispatchPost
                                 );
-                                console.log("follow");
                               }
                             }}
                           >
@@ -224,7 +223,7 @@ export const Postcard = ({ data }) => {
                       } fa-heart`}
                       onClick={() => {
                         if (!token) {
-                          alert("please login to continue");
+                          toast.error("Please Login to Continue");
                         } else {
                           if (!isPostLiked(likes, user)) {
                             postLikeHandler(token, _id, dispatchPost);
@@ -248,7 +247,7 @@ export const Postcard = ({ data }) => {
                     } fa-bookmark`}
                     onClick={() => {
                       if (!token) {
-                        alert("please login to continue");
+                        toast.error("Please Login to Continue");
                       } else {
                         if (postState.bookmarks.includes(_id)) {
                           removeFromBookmarkHandler(token, _id, dispatchPost);
@@ -264,7 +263,7 @@ export const Postcard = ({ data }) => {
                       navigator.clipboard.writeText(
                         `https://echo-sphere.vercel.app/post/${_id}`
                       );
-                      alert("Link Copied ! Start Sharing");
+                      toast.success("Link Copied ! Start Sharing");
                     }}
                   ></i>
                 </div>

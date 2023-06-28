@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { updateUserService } from "../../services/updateUserService";
 import { getImages } from "./createPost";
 import { getToken } from "./getToken";
@@ -6,7 +7,7 @@ export const updateUser = async (updateUser, dispatchPost, setEditProfile) => {
   try {
     setEditProfile((editProfile) => ({ ...editProfile, show: false }));
     typeof updateUser?.profileAvatar !== "string" &&
-      alert("We will notify you, once your profile is updated");
+      toast.success("We will notify you, once your profile is Updated");
     const token = getToken();
     let { profileAvatar } = updateUser;
     profileAvatar =
@@ -15,8 +16,6 @@ export const updateUser = async (updateUser, dispatchPost, setEditProfile) => {
         : profileAvatar;
     const updatedUser = {
       ...updateUser,
-      background:
-        "https://res.cloudinary.com/dazdakg1z/image/upload/v1684863383/samples/animals/three-dogs.jpg",
       profileAvatar:
         typeof profileAvatar === "string" ? profileAvatar : profileAvatar[0],
     };
@@ -29,7 +28,7 @@ export const updateUser = async (updateUser, dispatchPost, setEditProfile) => {
         payload: response?.data?.user,
       });
 
-      alert("Profile Updated Successfully");
+      toast.success("Profile Updated Successfully");
     }
   } catch (error) {
     console.error(error);

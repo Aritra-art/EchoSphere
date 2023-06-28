@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 export const removeFromBookmarkHandler = async (
   encodedToken,
@@ -20,6 +21,7 @@ export const removeFromBookmarkHandler = async (
         type: "SET_ALL_BOOKMARKS",
         payload: response?.data?.bookmarks,
       });
+      toast.success("Removed from Bookmark");
     }
   } catch (error) {
     console.error(error);

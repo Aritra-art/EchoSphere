@@ -76,6 +76,13 @@ export const postReducer = (postState, { type, payload }) => {
             : user
         ),
       };
+    case "UPDATE_COVER_IMAGE":
+      return {
+        ...postState,
+        users: postState?.users?.map((user) =>
+          user?._id === payload?._id ? payload : user
+        ),
+      };
     case "SET_LOADING_TRUE":
       return { ...postState, loading: payload };
     case "SET_LOADING_FALSE":

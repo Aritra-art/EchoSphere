@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 export const postLikeHandler = async (encodedToken, postId, dispatchPost) => {
   try {
@@ -16,6 +17,7 @@ export const postLikeHandler = async (encodedToken, postId, dispatchPost) => {
         type: "SET_ALL_POSTS",
         payload: response?.data?.posts,
       });
+      toast.success("Liked");
     }
   } catch (error) {
     console.error(error);

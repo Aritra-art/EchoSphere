@@ -80,8 +80,45 @@ export const CreatePost = ({ setCreatePost }) => {
 
           <div className="create-post-btns">
             <label>
-              {/* <i className="fa-solid fa-image"></i> */}
+              {/* <i
+                className="fa-solid fa-image"
+                style={{
+                  cursor: userImage?.length === 2 && "not-allowed",
+                  color: userImage?.length === 2 && "#f87171",
+                }}
+              ></i> */}
               <input
+                disabled={userImage?.length === 2}
+                type="file"
+                accept="image/*"
+                className="create-post-image-input"
+                onChange={(e) => {
+                  if (userImage.length === 2) {
+                    alert("max 2 items");
+                  } else {
+                    setUserImage((userImage) => {
+                      return [
+                        ...userImage,
+                        { id: Math.random(), image: e.target.files[0] },
+                      ];
+                    });
+                  }
+                }}
+              />
+            </label>
+
+            <label>
+              {/* <span
+                className="gif-icon"
+                style={{
+                  cursor: userImage?.length === 2 && "not-allowed",
+                  color: userImage?.length === 2 && "#f87171",
+                }}
+              >
+                GIF
+              </span> */}
+              <input
+                disabled={userImage?.length === 2}
                 type="file"
                 accept="image/*"
                 className="create-post-image-input"
@@ -100,8 +137,15 @@ export const CreatePost = ({ setCreatePost }) => {
               />
             </label>
             <label>
-              {/* <i className="fa-solid fa-video"></i> */}
+              {/* <i
+                className="fa-solid fa-video"
+                style={{
+                  cursor: userImage?.length === 2 && "not-allowed",
+                  color: userImage?.length === 2 && "#f87171",
+                }}
+              ></i> */}
               <input
+                disabled={userImage?.length === 2}
                 type="file"
                 accept="video/*"
                 className="create-post-image-input"

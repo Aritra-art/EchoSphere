@@ -125,12 +125,23 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
                   />
                 </label>
                 <button
+                  style={{ width: "100%", margin: "0" }}
+                  className="update-btn-secondary"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setUserInput((userInput) => ({
+                      ...userInput,
+                      profileAvatar:
+                        "https://res.cloudinary.com/dqlasoiaw/image/upload/v1686688962/tech-social/blank-profile-picture-973460_1280_d1qnjd.png",
+                    }));
+                  }}
+                >
+                  Remove Profile Photo
+                </button>
+                <button
                   style={{ width: "100%" }}
                   className="update-btn"
                   type="submit"
-                  // onClick={(e) => {
-                  //   e.target.innerText = "Updating . . .";
-                  // }}
                 >
                   Update
                 </button>
