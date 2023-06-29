@@ -8,12 +8,6 @@ import {
 } from "react-share";
 
 export const ShareModal = ({ setShowShare, id }) => {
-  const linkStyle = {
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "0.5rem",
-    cursor: "pointer",
-  };
   return (
     <>
       <div className="show-following-container-layout">
@@ -64,6 +58,7 @@ export const ShareModal = ({ setShowShare, id }) => {
                   href={`https://api.whatsapp.com/send?text=https://echo-sphere.vercel.app/post/${id}`}
                   data-action="share/whatsapp/share"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png"
@@ -78,6 +73,7 @@ export const ShareModal = ({ setShowShare, id }) => {
                   style={{ textDecoration: "none", color: "black" }}
                   href={`https://twitter.com/intent/tweet?text=https://echo-sphere.vercel.app/post/${id}`}
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <img
                     src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png"
