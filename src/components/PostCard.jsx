@@ -18,12 +18,14 @@ import { DelModal } from "./DelModal";
 import { EditPost } from "./EditPost";
 import { componentDecorator } from "../backend/utils/componentDecorator";
 import { toast } from "react-hot-toast";
+import { ShareModal } from "./ShareModal";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
   const [showEllipsisContent, setShowEllipsisContent] = useState({ id: false });
   const [showDelModal, setShowDelModal] = useState({ show: false, id: "" });
   const [showEditModal, setShowEditModal] = useState({ show: false, id: "" });
+  const [showShare, setShowShare] = useState({ id: "", show: false });
   const token = getToken();
   const user = getUser();
 
@@ -37,6 +39,9 @@ export const Postcard = ({ data }) => {
     <>
       {showDelModal.show && (
         <DelModal setShowModal={setShowDelModal} postId={showDelModal?.id} />
+      )}
+      {showShare?.show && (
+        <ShareModal setShowShare={setShowShare} id={showShare?.id} />
       )}
       {showEditModal.show && (
         <EditPost
@@ -260,10 +265,11 @@ export const Postcard = ({ data }) => {
                   <i
                     className="fas fa-share"
                     onClick={() => {
-                      navigator.clipboard.writeText(
-                        `https://echo-sphere.vercel.app/post/${_id}`
-                      );
-                      toast.success("Link Copied ! Start Sharing");
+                      setShowShare((showShare) => ({
+                        ...showShare,
+                        id: _id,
+                        show: true,
+                      }));
                     }}
                   ></i>
                 </div>
