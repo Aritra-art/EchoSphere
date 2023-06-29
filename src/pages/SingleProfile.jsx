@@ -118,7 +118,7 @@ export const SingleProfile = () => {
             <img
               className="banner-layout"
               style={{ width: "100%", height: "25rem", objectFit: "cover" }}
-              alt="cover-photo"
+              alt="cover"
               src={
                 postState?.users?.find((u) => u?._id === singleUser?._id)
                   ?.background

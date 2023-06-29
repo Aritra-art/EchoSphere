@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import "./ShowFollowing.css";
-export const ShowFollowing = ({ arr, setShowModal, showModal }) => {
+export const ShowFollowing = ({
+  arr,
+  setShowModal,
+  showModal,
+  fromLoginPage,
+  selectedUser,
+}) => {
   return (
     <div className="show-following-container-layout">
       <div className="modal-content">
@@ -20,8 +26,9 @@ export const ShowFollowing = ({ arr, setShowModal, showModal }) => {
                               ...showModal,
                               show: false,
                             }));
+                            selectedUser(username);
                           }}
-                          to={`/profile/${username}`}
+                          to={!fromLoginPage && `/profile/${username}`}
                           className="textdecoration-none"
                         >
                           <div
