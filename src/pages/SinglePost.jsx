@@ -20,6 +20,7 @@ import { DelModal } from "../components/DelModal";
 import { isUserFollowed } from "../backend/utils/isUserFollowed";
 import { unFollowUser } from "../backend/utils/unFollowUser";
 import { followUser } from "../backend/utils/followUser";
+import { ShowComments } from "../components/ShowComments";
 
 export const SinglePost = () => {
   const [singlePost, setSinglePost] = useState({});

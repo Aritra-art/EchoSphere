@@ -5,7 +5,7 @@ import { DataContext } from "../context/DataContext";
 import { getToken } from "../backend/utils/getToken";
 import { createPost } from "../backend/utils/createPost";
 
-export const CreatePost = ({ setCreatePost }) => {
+export const CreatePost = ({ setCreatePost, fromModal }) => {
   const [userInput, setUserInput] = useState("");
   const [userImage, setUserImage] = useState([]);
   const { dispatchPost } = useContext(DataContext);
@@ -170,7 +170,13 @@ export const CreatePost = ({ setCreatePost }) => {
 
             <button
               onClick={() => {
-                createPost(userInput, userImage, dispatchPost, setCreatePost);
+                createPost(
+                  userInput,
+                  userImage,
+                  dispatchPost,
+                  setCreatePost,
+                  fromModal
+                );
                 document.querySelector(".no-outline").innerText = "";
                 setUserImage(() => []);
                 setUserInput(() => "");
