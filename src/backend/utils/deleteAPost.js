@@ -11,7 +11,6 @@ export const deleteAPost = async (
 ) => {
   try {
     const response = await deleteAPostService(postId, token);
-    console.log(response);
     if (response?.status === 201) {
       dispatchPost({
         type: "SET_ALL_POSTS",

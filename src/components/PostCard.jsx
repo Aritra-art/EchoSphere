@@ -59,6 +59,7 @@ export const Postcard = ({ data }) => {
             username,
             postImage,
             createdAt,
+            comments,
           }) => {
             return (
               <div
@@ -242,8 +243,13 @@ export const Postcard = ({ data }) => {
                       {likes?.likeCount}
                     </span>
                   </div>
+                  <div>
+                    <i className="fa-regular fa-comment"></i>
+                    <span style={{ marginLeft: "0.5rem" }}>
+                      {comments?.length}
+                    </span>
+                  </div>
 
-                  <i className="fa-regular fa-comment"></i>
                   <i
                     className={`${
                       postState.bookmarks.includes(_id)

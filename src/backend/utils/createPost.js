@@ -21,7 +21,8 @@ export const createPost = async (
   userInput,
   userImage,
   dispatchPost,
-  setCreatePost
+  setCreatePost,
+  fromModal
 ) => {
   try {
     userImage?.length > 0 &&
@@ -33,6 +34,7 @@ export const createPost = async (
       fullName: `${user?.firstName} ${user?.lastName}`,
       postImage: postImage,
       createdAt: new Date(),
+      comments: [],
     });
     if (response?.status === 201) {
       dispatchPost({
@@ -40,7 +42,7 @@ export const createPost = async (
         payload: response?.data?.posts,
       });
       toast.success("Post uploaded Successfully");
-      setCreatePost(() => false);
+      fromModal && setCreatePost(() => false);
     }
   } catch (error) {
     console.error(error);
