@@ -3,7 +3,7 @@ export const CreatePostModal = ({ setCreatePost }) => {
   return (
     <div className="show-following-container-layout">
       <div className="modal-content">
-        <CreatePost setCreatePost={setCreatePost} fromModal />
+        <CreatePost setCreatePost={setCreatePost} />
         <div
           className="modal-cross"
           onClick={() => {

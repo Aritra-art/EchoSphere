@@ -9,16 +9,15 @@ import { Filters } from "../components/Filters";
 
 export const Feed = () => {
   const { postState } = useContext(DataContext);
-  console.log(postState?.loading);
   const userFeed = getUserFeed(postState);
 
   return (
     <>
       <Navbar from="Home" />
       <div style={{ marginTop: "4rem" }}>
+        {postState?.loading && <PostCardShimmer />}
         {!postState?.loding && <CreatePost />}
         {!postState?.loading && <Filters />}
-        {postState?.loading && <PostCardShimmer />}
         {userFeed?.length > 0 && <Postcard data={userFeed} />}
       </div>
     </>

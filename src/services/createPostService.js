@@ -9,7 +9,6 @@ export const createPostService = async (post) => {
       { postData: post },
       { headers: { authorization: encodedToken } }
     );
-
     return response;
   } catch (error) {
     console.error(error);
