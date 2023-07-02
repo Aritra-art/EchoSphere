@@ -26,7 +26,7 @@ export const ShowFollowing = ({
                               ...showModal,
                               show: false,
                             }));
-                            selectedUser(username);
+                            fromLoginPage && selectedUser(username);
                           }}
                           to={!fromLoginPage && `/profile/${username}`}
                           className="textdecoration-none"
