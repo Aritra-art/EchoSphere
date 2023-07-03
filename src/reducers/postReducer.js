@@ -83,6 +83,7 @@ export const postReducer = (postState, { type, payload }) => {
           user?._id === payload?._id ? payload : user
         ),
       };
+
     case "SET_LOADING_TRUE":
       return { ...postState, loading: payload };
     case "SET_LOADING_FALSE":

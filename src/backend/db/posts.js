@@ -23,6 +23,12 @@ export const posts = [
         username: "subhamsoni",
         comment: "Nice Fruit",
       },
+      {
+        id: "75ec47f3-f37f-4820-9888-5b07f78f528f",
+        createdAt: "2023-06-03",
+        username: "rinkusingh",
+        comment: "Wow",
+      },
     ],
     fullname: "Aritra Chowdhury",
     username: "aritrachowdhury",

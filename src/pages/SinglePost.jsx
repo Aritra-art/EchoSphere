@@ -21,6 +21,7 @@ import { isUserFollowed } from "../backend/utils/isUserFollowed";
 import { unFollowUser } from "../backend/utils/unFollowUser";
 import { followUser } from "../backend/utils/followUser";
 import { ShowComments } from "../components/ShowComments";
+import { AddComment } from "../components/AddComment";
 
 export const SinglePost = () => {
   const [singlePost, setSinglePost] = useState({});
@@ -34,17 +35,9 @@ export const SinglePost = () => {
   const { postState, dispatchPost } = useContext(DataContext);
   const { postId } = useParams();
   const getSinglePost = async () => {
-    dispatchPost({
-      type: "SET_LOADING_TRUE",
-      payload: true,
-    });
     try {
       const response = await getSinglePostService(postId);
       if (response?.status === 200) {
-        dispatchPost({
-          type: "SET_LOADING_FALSE",
-          payload: false,
-        });
         setSinglePost(response?.data?.post);
       }
     } catch (error) {
@@ -239,36 +232,69 @@ export const SinglePost = () => {
               );
             })}
           <hr />
-          {singlePost?.likes?.likeCount > 0 && (
-            <>
-              <p
-                style={{
-                  margin: "0.5rem 0",
-                  fontSize: "1.2rem",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  setShowModal((showModal) => ({
-                    ...showModal,
-                    show: true,
-                    type: "LIKED BY",
-                  }));
-                }}
-              >
-                <span
-                  style={{
-                    color: "#ff3b30",
-                    fontWeight: "bold",
-                    marginRight: "0.3rem",
-                  }}
-                >
-                  {singlePost?.likes?.likeCount}
-                </span>
-                Like{singlePost?.likes?.likeCount > 1 ? "s" : ""}
-              </p>
-              <hr />
-            </>
-          )}
+          <div
+            style={{
+              display: "flex",
+              gap: `${singlePost?.likes?.likeCount > 0 ? "0.5rem" : "0rem"}`,
+            }}
+          >
+            <div>
+              {singlePost?.likes?.likeCount > 0 && (
+                <>
+                  <p
+                    style={{
+                      margin: "0.5rem 0",
+                      fontSize: "1.2rem",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      setShowModal((showModal) => ({
+                        ...showModal,
+                        show: true,
+                        type: "LIKED BY",
+                      }));
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: "#ff3b30",
+                        fontWeight: "bold",
+                        marginRight: "0.3rem",
+                      }}
+                    >
+                      {singlePost?.likes?.likeCount}
+                    </span>
+                    Like{singlePost?.likes?.likeCount > 1 ? "s" : ""}
+                  </p>
+                </>
+              )}
+            </div>
+            <div>
+              {singlePost?.comments?.length > 0 && (
+                <>
+                  <p
+                    style={{
+                      margin: "0.5rem 0",
+                      fontSize: "1.2rem",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: "#ff3b30",
+                        fontWeight: "bold",
+                        marginRight: "0.3rem",
+                      }}
+                    >
+                      {singlePost?.comments?.length}
+                    </span>
+                    Comment{singlePost?.comments?.length > 1 ? "s" : ""}
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+          <hr />
 
           <div className="card-action-buttons">
             <i
@@ -322,6 +348,13 @@ export const SinglePost = () => {
           </div>
         </div>
       )}
+      {token && Object.keys(singlePost)?.length > 0 && (
+        <AddComment postId={singlePost?._id} />
+      )}
+      {singlePost?.comments?.length > 0 &&
+        Object.keys(singlePost)?.length > 0 && (
+          <ShowComments postId={singlePost?._id} />
+        )}
     </>
   );
 };

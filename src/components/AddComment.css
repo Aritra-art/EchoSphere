@@ -1,0 +1,28 @@
+.add-comment-layout-container {
+  width: 24rem;
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 1rem auto;
+}
+
+.comment-btn {
+  text-transform: capitalize;
+}
+
+.comment-input {
+  padding: 0.6rem;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 2px solid #ff3b30;
+  outline: none;
+}
+.fa-paper-plane {
+  color: #ff3b30;
+  font-size: 1.2rem;
+  border: 1px solid;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
