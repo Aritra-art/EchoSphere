@@ -50,7 +50,7 @@ export const addPostCommentHandler = function (schema, request) {
     const { commentData } = JSON.parse(request.requestBody);
 
     const comment = {
-      _id: uuid(),
+      id: uuid(),
       ...commentData,
       username: user?.username,
       //   replies: [],
@@ -96,13 +96,13 @@ export const editPostCommentHandler = function (schema, request) {
     const { commentData } = JSON.parse(request.requestBody);
     const post = schema.posts.findBy({ _id: postId }).attrs;
     const commentIndex = post.comments.findIndex(
-      (comment) => comment._id === commentId
+      (comment) => comment.id === commentId
     );
 
     post.comments[commentIndex] = {
       ...post.comments[commentIndex],
       ...commentData,
-      updatedAt: formatDate(),
+      // updatedAt: formatDate(),
     };
 
     this.db.posts.update({ _id: postId }, post);
@@ -140,9 +140,7 @@ export const deletePostCommentHandler = function (schema, request) {
     const { postId, commentId } = request.params;
     const post = schema.posts.findBy({ _id: postId }).attrs;
 
-    post.comments = post.comments.filter(
-      (comment) => comment._id !== commentId
-    );
+    post.comments = post.comments.filter((comment) => comment.id !== commentId);
     this.db.posts.update({ _id: postId }, post);
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {

@@ -55,7 +55,7 @@ export const SinglePost = () => {
   }, []);
   const token = getToken();
   const user = getUser();
-  console.log(singlePost);
+  // console.log(singlePost);
 
   return (
     <>

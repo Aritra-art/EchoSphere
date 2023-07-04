@@ -2,9 +2,9 @@
   width: 24rem;
   /* border: 1px solid; */
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
   margin: 1rem auto;
+  gap: 0.5rem;
 }
 
 .comment-btn {
@@ -12,17 +12,24 @@
 }
 
 .comment-input {
-  padding: 0.6rem;
+  padding: 0.2rem;
   font-size: 1.2rem;
   border: none;
   border-bottom: 2px solid #ff3b30;
   outline: none;
 }
-.fa-paper-plane {
+.fa-paper-plane,
+.cross-btn {
   color: #ff3b30;
   font-size: 1.2rem;
   border: 1px solid;
   padding: 0.5rem;
   border-radius: 0.4rem;
   cursor: pointer;
+}
+.cross-btn {
+  font-size: 1rem;
+  padding: 0.5rem 0.68rem;
+  font-weight: bold;
+  margin: 0 0.5rem;
 }
