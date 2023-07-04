@@ -16,10 +16,21 @@
 }
 .comment-action-btns {
   position: absolute;
-  bottom: 2.5px;
+  bottom: 0px;
   right: 0;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
   color: #ff3b30;
+}
+.fa-pen,
+.fa-trash {
+  border: 1px solid white;
+  padding: 0.2rem;
+}
+.fa-pen:hover,
+.fa-trash:hover {
+  border: 1px solid;
+  border-radius: 0.4rem;
+  background: gainsboro;
 }
