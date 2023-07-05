@@ -25,7 +25,7 @@ export const CreatePost = ({ setCreatePost, fromModal }) => {
                   (dbUser) => dbUser.username === user.username
                 )?.profileAvatar
               }
-              alt="avatar"
+              alt="user-avatar"
             />
           </div>
           <div className="create-post-content">

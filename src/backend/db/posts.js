@@ -32,7 +32,7 @@ export const posts = [
     ],
     fullname: "Aritra Chowdhury",
     username: "aritrachowdhury",
-    postImage: ["https://source.unsplash.com/random/900x700/?fruit"],
+    postImage: ["https://source.unsplash.com/random/1100x900/?fruit"],
     createdAt: "2023-06-01",
     updatedAt: formatDate(),
   },
@@ -55,7 +55,7 @@ export const posts = [
     ],
     fullname: "Subham Soni",
     username: "subhamsoni",
-    postImage: ["https://source.unsplash.com/random/900x700/?gym"],
+    postImage: ["https://source.unsplash.com/random/1100x900/?gym"],
     createdAt: "2023-06-02",
     updatedAt: formatDate(),
   },
@@ -71,14 +71,16 @@ export const posts = [
     comments: [],
     fullname: "Rinku Singh",
     username: "rinkusingh",
-    postImage: ["https://source.unsplash.com/random/900x700/?chatGPT"],
+    postImage: [
+      "https://res.cloudinary.com/dazdakg1z/video/upload/v1684863392/samples/sea-turtle.mp4",
+    ],
     createdAt: "2023-06-03",
     updatedAt: formatDate(),
   },
   {
     _id: "7aef0ff6-79c4-444a-8404-3add2916c058",
     content:
-      "ReactJS, a popular JavaScript library,Used for building user interfaces that are extraordinary.Component-based architecture, reusable and neat,Efficiently updates the view with a virtual DOM treat.",
+      "In the wild they roam, majestic and grand,Their size and strength, hard to withstand. With gentle eyes and a trunk so long,Elephants, nature's wonder, forever strong.",
     likes: {
       likeCount: 0,
       likedBy: [],
@@ -87,7 +89,9 @@ export const posts = [
     comments: [],
     fullname: "Rinku Singh",
     username: "rinkusingh",
-    postImage: ["https://source.unsplash.com/random/900x700/?reactjs"],
+    postImage: [
+      "https://res.cloudinary.com/dazdakg1z/video/upload/v1684863395/samples/elephants.mp4",
+    ],
     createdAt: "2023-06-04",
     updatedAt: formatDate(),
   },

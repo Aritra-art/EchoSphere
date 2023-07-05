@@ -19,6 +19,7 @@ import { EditPost } from "./EditPost";
 import { componentDecorator } from "../backend/utils/componentDecorator";
 import { toast } from "react-hot-toast";
 import { ShareModal } from "./ShareModal";
+import ModalImage from "react-modal-image";
 
 export const Postcard = ({ data }) => {
   const { postState, dispatchPost } = useContext(DataContext);
@@ -193,32 +194,38 @@ export const Postcard = ({ data }) => {
                       {content}
                     </Linkify>
                   </div>
-                  {postImage.length > 0 &&
-                    postImage.map((img, id) => {
-                      return (
-                        <div key={id}>
-                          {img.split("/")[4] === "video" ? (
-                            <video
-                              controls
-                              style={{
-                                width: "100%",
-                                height: "auto",
-                                objectFit: "contain",
-                              }}
-                            >
-                              <source src={img} />
-                            </video>
-                          ) : (
-                            <img
-                              src={img}
-                              className="postcard-content-img"
-                              alt="postImage"
-                            />
-                          )}
-                        </div>
-                      );
-                    })}
                 </Link>
+                {postImage.length > 0 &&
+                  postImage.map((img, id) => {
+                    return (
+                      <div key={id}>
+                        {img.split("/")[4] === "video" ? (
+                          <video
+                            loop
+                            autoPlay
+                            controls
+                            style={{
+                              width: "100%",
+                              height: "auto",
+                              objectFit: "contain",
+                            }}
+                          >
+                            <source src={img} />
+                          </video>
+                        ) : (
+                          <ModalImage
+                            small={img}
+                            medium={img}
+                            large={img}
+                            showRotate={true}
+                            imageBackgroundColor={"rgba(255, 0, 0, 0)"}
+                            className="postcard-content-img"
+                            alt="Hello World!"
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
 
                 <hr />
                 <div className="card-action-buttons">
@@ -244,12 +251,12 @@ export const Postcard = ({ data }) => {
                     </span>
                   </div>
 
-                  <div>
+                  <Link to={`/post/${_id}`} className="textdecoration-none">
                     <i className="fa-regular fa-comment"></i>
-                    <span style={{ marginLeft: "0.5rem" }}>
+                    <span style={{ marginLeft: "0.5rem", color: "#ff3b30" }}>
                       {comments?.length}
                     </span>
-                  </div>
+                  </Link>
                   <i
                     className={`${
                       postState.bookmarks.includes(_id)

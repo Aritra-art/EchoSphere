@@ -54,6 +54,7 @@ div[contentEditable="true"]:empty::before {
 }
 .user-input-image {
   width: 100%;
+
   border-radius: 0.2rem;
   margin-bottom: 0.5rem;
 }

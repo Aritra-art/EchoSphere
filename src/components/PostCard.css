@@ -1,5 +1,6 @@
 .postcard-layout {
   width: 24rem;
+
   background-color: #f7f7f7;
   margin: 1rem auto;
   padding: 1rem 0.8rem;
@@ -35,6 +36,10 @@
   width: 100%;
   margin-bottom: 0.4rem;
   border-radius: 0.3rem;
+  transition: all 0.2s ease;
+}
+.postcard-content-img:hover {
+  opacity: 0.8;
 }
 hr {
   color: black;
@@ -54,6 +59,9 @@ hr {
 .fa-share,
 .fa-ellipsis {
   cursor: pointer;
+}
+.fa-comment {
+  color: #ff3b30;
 }
 
 .margin-left {
