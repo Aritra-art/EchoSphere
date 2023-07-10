@@ -9,7 +9,7 @@ import { isUserFollowed } from "../backend/utils/isUserFollowed";
 import { followUser } from "../backend/utils/followUser";
 import { unFollowUser } from "../backend/utils/unFollowUser";
 import { toast } from "react-hot-toast";
-// import { UserCardShimmer } from "./UserCardShimmer";
+import { UserCardShimmer } from "./UserCardShimmer";
 
 export const SuggestedUsers = () => {
   const { postState, dispatchPost } = useContext(DataContext);
@@ -44,7 +44,7 @@ export const SuggestedUsers = () => {
       <div className="suggested-users-layout">
         <h3 className="margin-bottom">Who to Follow ?</h3>
         <hr />
-        {/* {postState?.loading && <UserCardShimmer />} */}
+        {postState?.loading && <UserCardShimmer />}
         <ul className="suggested-users">
           {suggestedUsers().length > 0 &&
             suggestedUsers()?.map(
