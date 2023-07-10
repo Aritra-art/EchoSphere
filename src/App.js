@@ -12,6 +12,7 @@ import { SinglePost } from "./pages/SinglePost";
 import { getToken } from "./backend/utils/getToken";
 import { SingleProfile } from "./pages/SingleProfile";
 import { Toaster } from "react-hot-toast";
+import { PageNotFound } from "./pages/PageNotFound";
 
 function App() {
   const token = getToken();
@@ -26,6 +27,7 @@ function App() {
         }}
       />
       <Routes>
+        <Route path="/*" element={<PageNotFound />} />
         <Route
           path="/"
           element={
