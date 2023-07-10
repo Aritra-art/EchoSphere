@@ -1,4 +1,4 @@
-# tech-social
+# EchoSphere
 
 [EchoSphere](https://echo-sphere.vercel.app/explore) - Echosphere: Connect, share, and amplify your voice in a vibrant social media community..
 
