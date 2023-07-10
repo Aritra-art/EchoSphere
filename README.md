@@ -4,7 +4,7 @@
 
 ## Demo video
 
-[EchoSphere-demo-video]
+[EchoSphere-demo-video](https://www.loom.com/share/804d88ad582540c7aa51104e8f7e3370?sid=823d9826-a616-469f-bb47-d674ce0d496c)
 
 ## How to install and run locally?
 
