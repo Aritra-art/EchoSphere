@@ -25,8 +25,6 @@ export const createPost = async (
   fromModal
 ) => {
   try {
-    userImage?.length > 0 &&
-      toast.success("We will notify you, once your post is Uploaded");
     const user = getUser();
     const postImage = userImage.length > 0 ? await getImages(userImage) : [];
     const response = await createPostService({
@@ -41,7 +39,7 @@ export const createPost = async (
         type: "SET_ALL_POSTS",
         payload: response?.data?.posts,
       });
-      toast.success("Post uploaded Successfully");
+
       fromModal && setCreatePost(() => false);
     }
   } catch (error) {

@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import "./EditPost.css";
 import { editPostUtil } from "../backend/utils/editPostUtil";
+import { toast } from "react-hot-toast";
 
 export const EditPost = ({ editId, setShowEditModal }) => {
   const { postState, dispatchPost } = useContext(DataContext);
@@ -121,8 +122,25 @@ export const EditPost = ({ editId, setShowEditModal }) => {
               );
             })}
           <label>
-            {/* <i className="fa-solid fa-image"></i> */}
+            <i
+              className="fa-solid fa-image"
+              style={{
+                cursor:
+                  Number(editPost?.userImage?.length) +
+                    Number(editPost?.postImage()?.length) ===
+                    2 && "not-allowed",
+                color:
+                  Number(editPost?.userImage?.length) +
+                    Number(editPost?.postImage()?.length) ===
+                    2 && "#f87171",
+              }}
+            ></i>
             <input
+              disabled={
+                Number(editPost?.userImage?.length) +
+                  Number(editPost?.postImage()?.length) ===
+                2
+              }
               type="file"
               accept="image/*"
               className="create-post-image-input"
@@ -132,7 +150,7 @@ export const EditPost = ({ editId, setShowEditModal }) => {
                     Number(editPost?.postImage()?.length) ===
                   2
                 ) {
-                  alert("Max 2 items can be uploaded");
+                  toast.error("Max 2 items can be uploaded");
                 } else {
                   setEditPost((editPost) => ({
                     ...editPost,
@@ -146,9 +164,70 @@ export const EditPost = ({ editId, setShowEditModal }) => {
             />
           </label>
           <label>
-            {/* <i className="fa-solid fa-video"></i> */}
+            <span
+              className="gif-icon"
+              style={{
+                cursor:
+                  Number(editPost?.userImage?.length) +
+                    Number(editPost?.postImage()?.length) ===
+                    2 && "not-allowed",
+                color:
+                  Number(editPost?.userImage?.length) +
+                    Number(editPost?.postImage()?.length) ===
+                    2 && "#f87171",
+              }}
+            >
+              GIF
+            </span>
+            <input
+              disabled={
+                Number(editPost?.userImage?.length) +
+                  Number(editPost?.postImage()?.length) ===
+                2
+              }
+              type="file"
+              accept="image/*"
+              className="create-post-image-input"
+              onChange={(e) => {
+                if (
+                  Number(editPost?.userImage?.length) +
+                    Number(editPost?.postImage()?.length) ===
+                  2
+                ) {
+                  toast.error("Max 2 items can be uploaded");
+                } else {
+                  setEditPost((editPost) => ({
+                    ...editPost,
+                    userImage: [
+                      ...editPost?.userImage,
+                      { id: Math.random(), image: e.target.files[0] },
+                    ],
+                  }));
+                }
+              }}
+            />
+          </label>
+          <label>
+            <i
+              className="fa-solid fa-video"
+              style={{
+                cursor:
+                  Number(editPost?.userImage?.length) +
+                    Number(editPost?.postImage()?.length) ===
+                    2 && "not-allowed",
+                color:
+                  Number(editPost?.userImage?.length) +
+                    Number(editPost?.postImage()?.length) ===
+                    2 && "#f87171",
+              }}
+            ></i>
             <input
               type="file"
+              disabled={
+                Number(editPost?.userImage?.length) +
+                  Number(editPost?.postImage()?.length) ===
+                2
+              }
               accept="video/*"
               className="create-post-image-input"
               onChange={(e) => {
@@ -157,10 +236,10 @@ export const EditPost = ({ editId, setShowEditModal }) => {
                     Number(editPost?.postImage()?.length) ===
                   2
                 ) {
-                  alert("max 2 items");
+                  toast.error("Max 2 items can be uploaded");
                 } else {
                   if (e.target.files[0]?.size / 10240000 > 1) {
-                    alert("Video should not be more than 10mb");
+                    toast.error("Video should not be more than 10mb");
                   } else {
                     setEditPost((editPost) => ({
                       ...editPost,
@@ -177,7 +256,11 @@ export const EditPost = ({ editId, setShowEditModal }) => {
           <button
             className="update-btn"
             onClick={() => {
-              editPostUtil(editId, editPost, dispatchPost);
+              toast.promise(editPostUtil(editId, editPost, dispatchPost), {
+                loading: "Updating your Post",
+                success: <b>Post Updated Successfully</b>,
+                error: <b>Could not update post.</b>,
+              });
               setShowEditModal((showEditModal) => ({
                 ...showEditModal,
                 show: false,

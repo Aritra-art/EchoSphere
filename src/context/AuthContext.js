@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { userLoginService } from "../services/userLoginService";
 import { userSignupService } from "../services/userSignupService";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export const AuthContext = createContext();
 
@@ -19,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
         localStorage.setItem("user", JSON.stringify(response?.data?.foundUser));
         setIsLoggedIn(true);
         navigate("/feed");
-        alert("Login successfull");
+        toast.success("Login Successfull");
       }
     } catch (error) {
       console.error(error);
@@ -39,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
 
         setIsLoggedIn(true);
         navigate("/feed");
-        alert("signup successfull");
+        toast.success("signup successfull");
       }
     } catch (error) {
       console.error(error);

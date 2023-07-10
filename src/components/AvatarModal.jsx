@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { avatarDb } from "../backend/utils/avatarDb";
 import { getUser } from "../backend/utils/getUser";
 import { DataContext } from "../context/DataContext";
+import { toast } from "react-hot-toast";
 
 export const AvatarModal = ({ showModal, setShowModal, setUserInput }) => {
   const [border, setBorder] = useState({});
@@ -49,7 +50,7 @@ export const AvatarModal = ({ showModal, setShowModal, setUserInput }) => {
               style={{ width: "100%" }}
               onClick={() => {
                 if (selectedAvatar.length === 0) {
-                  alert("please select a avatar");
+                  toast.error("please select a avatar");
                 } else {
                   setUserInput((userInput) => ({
                     ...userInput,

@@ -7,6 +7,7 @@ import { getUser } from "../backend/utils/getUser";
 import { unFollowUser } from "../backend/utils/unFollowUser";
 import { followUser } from "../backend/utils/followUser";
 import { getToken } from "../backend/utils/getToken";
+import { toast } from "react-hot-toast";
 
 export const SearchPeople = () => {
   const [userInput, setUserInput] = useState("");
@@ -76,7 +77,7 @@ export const SearchPeople = () => {
                                 followUser(_id, token, dispatchPost);
                               }
                             } else {
-                              alert("please login to follow");
+                              toast.error("please login to follow");
                               navigate("/login");
                             }
                           }}

@@ -24,8 +24,6 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
     bio: obj?.bio,
     website: obj?.website,
   });
-
-  console.log(typeof userInput?.profileAvatar);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInput((userInput) => ({ ...userInput, [name]: value }));
@@ -59,7 +57,7 @@ export const ShowEdit = ({ obj, type, setEditProfile }) => {
                       }
                       className="single-user-avatar"
                     />
-                    {/* <i className="fa-solid fa-camera"></i> */}
+                    <i className="fa-solid fa-camera"></i>
                   </span>
                   <input
                     type="file"

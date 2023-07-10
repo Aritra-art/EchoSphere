@@ -22,12 +22,16 @@ import { unFollowUser } from "../backend/utils/unFollowUser";
 import { followUser } from "../backend/utils/followUser";
 import { ShowComments } from "../components/ShowComments";
 import { AddComment } from "../components/AddComment";
+import { ShareModal } from "../components/ShareModal";
+import ModalImage from "react-modal-image";
+import { toast } from "react-hot-toast";
 
 export const SinglePost = () => {
   const [singlePost, setSinglePost] = useState({});
   const [showEllipsisContent, setShowEllipsisContent] = useState({ id: false });
   const [showEditModal, setShowEditModal] = useState({ show: false, id: "" });
   const [showDelModal, setShowDelModal] = useState({ show: false, id: "" });
+  const [showShare, setShowShare] = useState({ id: "", show: false });
   const [showModal, setShowModal] = useState({
     show: false,
     type: "",
@@ -69,6 +73,9 @@ export const SinglePost = () => {
           setShowModal={setShowModal}
           showModal={showModal}
         />
+      )}
+      {showShare?.show && (
+        <ShareModal setShowShare={setShowShare} id={showShare?.id} />
       )}
       {showEditModal.show && (
         <EditPost
@@ -222,10 +229,18 @@ export const SinglePost = () => {
                       <source src={img} />
                     </video>
                   ) : (
-                    <img
-                      src={img}
+                    <ModalImage
+                      small={img}
+                      medium={img}
+                      large={img}
+                      showRotate={true}
+                      imageBackgroundColor={"rgba(255, 0, 0, 0)"}
                       className="postcard-content-img"
-                      alt="postImage"
+                      alt={`Posted by ${
+                        postState?.users?.find(
+                          (u) => u.username === singlePost?.username
+                        )?.firstName
+                      }`}
                     />
                   )}
                 </div>
@@ -303,7 +318,7 @@ export const SinglePost = () => {
               } fa-heart`}
               onClick={() => {
                 if (!token) {
-                  alert("please login to continue");
+                  toast.error("please login to continue");
                 } else {
                   if (!isPostLiked(singlePost?.likes, user)) {
                     postLikeHandler(token, singlePost?._id, dispatchPost);
@@ -322,7 +337,7 @@ export const SinglePost = () => {
               } fa-bookmark`}
               onClick={() => {
                 if (!token) {
-                  alert("please login to continue");
+                  toast.error("please login to continue");
                 } else {
                   if (postState.bookmarks.includes(singlePost?._id)) {
                     removeFromBookmarkHandler(
@@ -339,10 +354,11 @@ export const SinglePost = () => {
             <i
               className="fas fa-share"
               onClick={() => {
-                navigator.clipboard.writeText(
-                  `https://echo-sphere.vercel.app/post/${singlePost?._id}`
-                );
-                alert("Link Copied ! Start Sharing");
+                setShowShare((showShare) => ({
+                  ...showShare,
+                  id: singlePost?._id,
+                  show: true,
+                }));
               }}
             ></i>
           </div>

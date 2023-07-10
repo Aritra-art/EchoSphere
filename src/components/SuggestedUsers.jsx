@@ -8,6 +8,7 @@ import { getToken } from "../backend/utils/getToken";
 import { isUserFollowed } from "../backend/utils/isUserFollowed";
 import { followUser } from "../backend/utils/followUser";
 import { unFollowUser } from "../backend/utils/unFollowUser";
+import { toast } from "react-hot-toast";
 // import { UserCardShimmer } from "./UserCardShimmer";
 
 export const SuggestedUsers = () => {
@@ -85,7 +86,7 @@ export const SuggestedUsers = () => {
                             followUser(_id, token, dispatchPost);
                           }
                         } else {
-                          alert("please login to follow");
+                          toast.error("please login to follow");
                           navigate("/login");
                         }
                       }}

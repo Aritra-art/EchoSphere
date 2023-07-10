@@ -220,7 +220,11 @@ export const Postcard = ({ data }) => {
                             showRotate={true}
                             imageBackgroundColor={"rgba(255, 0, 0, 0)"}
                             className="postcard-content-img"
-                            alt="Hello World!"
+                            alt={`Posted by ${
+                              postState?.users?.find(
+                                (u) => u.username === username
+                              )?.firstName
+                            }`}
                           />
                         )}
                       </div>

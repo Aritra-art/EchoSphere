@@ -4,6 +4,7 @@ import "./CreatePost.css";
 import { DataContext } from "../context/DataContext";
 import { getToken } from "../backend/utils/getToken";
 import { createPost } from "../backend/utils/createPost";
+import { toast } from "react-hot-toast";
 
 export const CreatePost = ({ setCreatePost, fromModal }) => {
   const [userInput, setUserInput] = useState("");
@@ -80,13 +81,13 @@ export const CreatePost = ({ setCreatePost, fromModal }) => {
 
           <div className="create-post-btns">
             <label>
-              {/* <i
+              <i
                 className="fa-solid fa-image"
                 style={{
                   cursor: userImage?.length === 2 && "not-allowed",
                   color: userImage?.length === 2 && "#f87171",
                 }}
-              ></i> */}
+              ></i>
               <input
                 disabled={userImage?.length === 2}
                 type="file"
@@ -94,7 +95,7 @@ export const CreatePost = ({ setCreatePost, fromModal }) => {
                 className="create-post-image-input"
                 onChange={(e) => {
                   if (userImage.length === 2) {
-                    alert("max 2 items");
+                    toast.error("max 2 items");
                   } else {
                     setUserImage((userImage) => {
                       return [
@@ -108,7 +109,7 @@ export const CreatePost = ({ setCreatePost, fromModal }) => {
             </label>
 
             <label>
-              {/* <span
+              <span
                 className="gif-icon"
                 style={{
                   cursor: userImage?.length === 2 && "not-allowed",
@@ -116,7 +117,7 @@ export const CreatePost = ({ setCreatePost, fromModal }) => {
                 }}
               >
                 GIF
-              </span> */}
+              </span>
               <input
                 disabled={userImage?.length === 2}
                 type="file"
@@ -124,7 +125,7 @@ export const CreatePost = ({ setCreatePost, fromModal }) => {
                 className="create-post-image-input"
                 onChange={(e) => {
                   if (userImage.length === 2) {
-                    alert("max 2 items");
+                    toast.error("max 2 items");
                   } else {
                     setUserImage((userImage) => {
                       return [
@@ -137,13 +138,13 @@ export const CreatePost = ({ setCreatePost, fromModal }) => {
               />
             </label>
             <label>
-              {/* <i
+              <i
                 className="fa-solid fa-video"
                 style={{
                   cursor: userImage?.length === 2 && "not-allowed",
                   color: userImage?.length === 2 && "#f87171",
                 }}
-              ></i> */}
+              ></i>
               <input
                 disabled={userImage?.length === 2}
                 type="file"
@@ -151,10 +152,10 @@ export const CreatePost = ({ setCreatePost, fromModal }) => {
                 className="create-post-image-input"
                 onChange={(e) => {
                   if (userImage.length === 2) {
-                    alert("max 2 items");
+                    toast.error("max 2 items");
                   } else {
                     if (e.target.files[0]?.size / 10240000 > 1) {
-                      alert("Video should not be more than 10mb");
+                      toast.error("Video should not be more than 10mb");
                     } else {
                       setUserImage((userImage) => {
                         return [
@@ -170,17 +171,28 @@ export const CreatePost = ({ setCreatePost, fromModal }) => {
 
             <button
               onClick={() => {
-                createPost(
-                  userInput,
-                  userImage,
-                  dispatchPost,
-                  setCreatePost,
-                  fromModal
+                toast.promise(
+                  createPost(
+                    userInput,
+                    userImage,
+                    dispatchPost,
+                    setCreatePost,
+                    fromModal
+                  ),
+                  {
+                    loading:
+                      userImage?.length > 0
+                        ? "Uploading Your Post"
+                        : "Creating Your Post",
+                    success: <b>Post Created Successfully</b>,
+                    error: <b>Could not post.</b>,
+                  }
                 );
                 document.querySelector(".no-outline").innerText = "";
                 setUserImage(() => []);
                 setUserInput(() => "");
               }}
+              style={{ textTransform: "capitalize" }}
               className={
                 userImage.length === 0 && userInput?.trim()?.length === 0
                   ? "update-btn not-allowed"

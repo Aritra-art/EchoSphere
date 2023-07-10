@@ -14,6 +14,7 @@ import { getToken } from "../backend/utils/getToken";
 import { ShowFollowing } from "../components/ShowFollowing";
 import { ShowEdit } from "../components/ShowEdit";
 import { BackgroundModal } from "../components/BackgroundModal";
+import { toast } from "react-hot-toast";
 
 export const SingleProfile = () => {
   const { username } = useParams();
@@ -182,7 +183,7 @@ export const SingleProfile = () => {
                     followUser(singleUser?._id, token, dispatchPost);
                   }
                 } else {
-                  alert("please login to follow");
+                  toast.error("please login to follow");
                   navigate("/login");
                 }
               }}
